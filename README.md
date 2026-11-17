@@ -35,16 +35,17 @@ that reproduces the existing Python results exactly. `run_all.sh` runs them and 
 it once that file is rebuilt (`tests/remapcap-q7/README.md`, Inputs).
 
 ## What runs here, and what does not
-- **Runs here:** the rule compiler and runner (`rulerun.py`) with mapping data as `jt:` graphs, on the two CPMP
-  tests; the register rebuild.
+- **Runs here:** the rule compiler and runner (`rulerun.py`) with mapping data as `jt:` graphs and as an SSSOM
+  set (`sssom_rdf.py`: the CPMP crosswalk), on the two CPMP tests; the register rebuild.
 - **Code here, evidence outside:** the d2d transcript vocabulary and its checks (`d2d_iri.py`, `d2d_check.py`),
-  SSSOM mapping sets as rule input (`sssom_rdf.py`), USDM output validated with usdm-rdf, and the coverage query.
+  the drift check of SSSOM rows against a transcript, USDM output validated with usdm-rdf, and the coverage query.
   They are used on ClinicalTrials.gov protocol documents in tests kept outside this repository, because those
   tests contain protocol text. There is no public worked example for them yet.
 
 ## What the tests showed
 The first three points can be seen in the tests here. The next three come from the protocol tests outside this
-repository (code here, see above). The register in the last point is here; the transcripts minted under it are not.
+repository (code here, see above); of the sixth, the CPMP crosswalk shows the proposed state here. The register in
+the last point is here; the transcripts minted under it are not.
 - **Interpretation becomes visible.** Decisions that sit inside build scripts or prompts become short
   named rules: "an endpoint takes its objective's level", "each sub-bullet is its own endpoint", "the
   override wins", "an ISA takes a master default unless it overrides it". "The override wins" is a negative
@@ -107,8 +108,8 @@ Identifiers: all IRIs are `urn:jt:` for now. They are provisional and will move 
    "rule-derived from analyst readings" while their crosswalk entries are proposed.
 3. **Align with usdm-rdf conventions**: node IRIs = base + USDM id, done in the protocol tests outside this
    repository; join to CT as data when USDM 4.1 lands.
-4. **A public worked example** for the transcript checks and SSSOM input, from a document whose printed text may
-   be redistributed.
+4. **A public worked example** for the transcript checks and the drift check of SSSOM rows, from a document whose
+   printed text may be redistributed.
 5. **Resolvable IRIs**: from `urn:jt:` to `https://w3id.org/people/kerfors/doc2data/`, with its w3id entry.
 
 ## Licence

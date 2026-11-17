@@ -8,8 +8,10 @@ mkdir -p register/out
 python3 machinery/ctgov_register.py register/assignments.tsv register/inputs/ctgov register/out/register.trig
 cmp register/out/register.trig register/register.trig
 (cd tests/cpmp-join-kind && (cd inputs && shasum -a 256 -c MANIFEST.sha256 > /dev/null) \
+   && mkdir -p out && python3 crosswalk_sssom.py out/crosswalk.sssom.tsv && cmp out/crosswalk.sssom.tsv crosswalk.sssom.tsv \
+   && python3 ../../machinery/sssom_rdf.py crosswalk.sssom.tsv out/crosswalk.trig urn:k:g:crosswalk \
    && python3 build_facts_kind.py \
-   && python3 "$M" --rules rules_kind.trig --facts facts.trig --out out --output kind_cells.ttl --firing-ns urn:k:firing: \
+   && python3 "$M" --rules rules_kind.trig --facts facts.trig out/crosswalk.trig --out out --output kind_cells.ttl --firing-ns urn:k:firing: \
    && python3 compare_kind.py)
 (cd tests/cpmp-q6 && (cd inputs && shasum -a 256 -c MANIFEST.sha256 > /dev/null) \
    && python3 build_facts.py \

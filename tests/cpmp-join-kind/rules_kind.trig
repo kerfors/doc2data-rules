@@ -1,10 +1,14 @@
 # CPMP SoA join 'kind' classification as L/R rules — the same decisions as
 # early-clinical-design-research/cpmp-soa-join/cpmp_soa_join.ipynb (cells 1, 10, 11, 13), one rule each.
-# Facts: urn:k:g:facts (transcribed). Mapping data: urn:k:g:crosswalk (the join's activity_crosswalk.csv).
+# Facts: urn:k:g:facts (transcribed). Mapping data: urn:k:g:crosswalk (crosswalk.sssom.tsv through sssom_rdf.py;
+# made from the join's activity_crosswalk.csv by crosswalk_sssom.py).
 # jt: vocabulary as in VOCABULARY.md; jt:negative may repeat; jt:filter is a spliced SPARQL expression.
 
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix sssom: <https://w3id.org/sssom/> .
+@prefix semapv: <https://w3id.org/semapv/vocab/> .
 @prefix jt:   <urn:jt:rule-vocab:> .
 @prefix v:    <urn:jt:var:> .
 @prefix f:    <urn:k:fact-vocab:> .
@@ -13,9 +17,9 @@
 
 <urn:jt:g:rules> {
   # ---- activity identity, through the crosswalk (mapping data, not rule content)
-  :K1 a jt:Rule ; jt:seq 1 ; rdfs:label "Row key from the crosswalk where use = yes" ;
-      jt:match :K1_L ; jt:construct :K1_R .
-  :K2 a jt:Rule ; jt:seq 2 ; rdfs:label "Row key = name as printed where the crosswalk says use = no" ;
+  :K1 a jt:Rule ; jt:seq 1 ; rdfs:label "Row key from the crosswalk where it names a key for the printed name" ;
+      jt:match :K1_L ; jt:construct :K1_R ; jt:negative :N_noTerm .
+  :K2 a jt:Rule ; jt:seq 2 ; rdfs:label "Row key = name as printed where the crosswalk has no term for it (kept apart)" ;
       jt:match :K2_L ; jt:construct :K2_R .
 
   # ---- what the master shows
@@ -87,10 +91,10 @@
   # ---- status labels from mapping status: a crosswalk entry still 'proposed' is an analyst reading
   :ST1 a jt:Rule ; jt:seq 20 ;
       rdfs:label "Cell whose key came, in this ISA, through a crosswalk entry still proposed: rule-derived from analyst readings" ;
-      jt:match :ST1_L ; jt:construct :ST_R_analyst .
+      jt:match :ST1_L ; jt:construct :ST_R_analyst ; jt:negative :N_reviewed .
   :ST2 a jt:Rule ; jt:seq 21 ;
       rdfs:label "Cell whose key came, in the master, through a crosswalk entry still proposed: rule-derived from analyst readings" ;
-      jt:match :ST2_L ; jt:construct :ST_R_analyst .
+      jt:match :ST2_L ; jt:construct :ST_R_analyst ; jt:negative :N_reviewed .
   :ST3 a jt:Rule ; jt:seq 22 ;
       rdfs:label "Any other cell: rule-derived (every key it rests on is identical as printed or decided)" ;
       jt:match :ST3_L ; jt:construct :ST_R_rule ; jt:negative :N_analyst .
@@ -99,12 +103,15 @@
 # ---------- K: identity and layer facts
 <urn:k:rules:K1_L> {
   v:R a f:ActivityRow ; f:name "?n"^^jt:var .
-  v:X a f:CrosswalkEntry ; f:nameAsPrinted "?n"^^jt:var ; f:activityKey "?key"^^jt:var ; f:use "yes" .
+  v:X a owl:Axiom ; sssom:mapping_set <urn:k:mapping-set:crosswalk> ;
+      sssom:subject_label "?n"^^jt:var ; sssom:object_label "?key"^^jt:var .
 }
+<urn:k:rules:N_noTerm> { v:X owl:annotatedTarget sssom:NoTermFound . }
 <urn:k:rules:K1_R> { v:R k:key "?key"^^jt:var ; jt:derivedFrom v:X . }
 <urn:k:rules:K2_L> {
   v:R a f:ActivityRow ; f:name "?n"^^jt:var .
-  v:X a f:CrosswalkEntry ; f:nameAsPrinted "?n"^^jt:var ; f:use "no" .
+  v:X a owl:Axiom ; sssom:mapping_set <urn:k:mapping-set:crosswalk> ;
+      sssom:subject_label "?n"^^jt:var ; owl:annotatedTarget sssom:NoTermFound .
 }
 <urn:k:rules:K2_R> { v:R k:key "?n"^^jt:var ; jt:derivedFrom v:X . }
 
@@ -229,13 +236,14 @@
 <urn:k:rules:ST1_L> {
   v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var .
   v:R a f:ActivityRow ; f:inDoc v:D ; k:key "?key"^^jt:var ; jt:derivedFrom v:X .
-  v:X a f:CrosswalkEntry ; f:status "proposed" .
+  v:X a owl:Axiom ; sssom:mapping_set <urn:k:mapping-set:crosswalk> ; sssom:mapping_justification semapv:ManualMappingCuration .
 }
+<urn:k:rules:N_reviewed> { v:X sssom:reviewer_id v:Rev . }
 <urn:k:rules:ST2_L> {
   v:CELL a k:Cell ; k:key "?key"^^jt:var .
   v:R a f:ActivityRow ; f:inDoc v:Dm ; k:key "?key"^^jt:var ; jt:derivedFrom v:X .
   v:Dm f:layer "master" .
-  v:X a f:CrosswalkEntry ; f:status "proposed" .
+  v:X a owl:Axiom ; sssom:mapping_set <urn:k:mapping-set:crosswalk> ; sssom:mapping_justification semapv:ManualMappingCuration .
 }
 <urn:k:rules:ST3_L>      { v:CELL a k:Cell . }
 <urn:k:rules:N_analyst>  { v:CELL k:status "rule-derived from analyst readings" . }

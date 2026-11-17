@@ -1,0 +1,108 @@
+#curie_map:
+#  xw: 'urn:k:crosswalk:'
+#  kn: 'urn:k:name:'
+#  kk: 'urn:k:key:'
+#  skos: http://www.w3.org/2004/02/skos/core#
+#  semapv: https://w3id.org/semapv/vocab/
+#  sssom: https://w3id.org/sssom/
+#  jt: 'urn:jt:rule-vocab:'
+#mapping_set_id: urn:k:mapping-set:crosswalk
+#mapping_set_title: CPMP SoA join activity crosswalk (name as printed -> activity key)
+#mapping_set_description: Made by crosswalk_sssom.py from early-clinical-design-research
+#  8c374cc cpmp-soa-join/activity_crosswalk.csv; content unchanged.
+#license: https://opensource.org/licenses/MIT
+#object_source_version: early-clinical-design-research 8c374cc
+#extension_definitions:
+#- slot_name: basis
+#  property: jt:basis
+#  type_hint: xsd:string
+record_id	subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	comment	basis
+xw:1	kn:Adverse%20Events	Adverse Events	skos:exactMatch	kk:Adverse%20events	Adverse events	semapv:ManualMappingCuration		case_typography
+xw:2	kn:Adverse%20events	Adverse events	skos:exactMatch	kk:Adverse%20events	Adverse events	semapv:LexicalMatching		identical
+xw:3	kn:AE	AE	skos:exactMatch	kk:Adverse%20events	Adverse events	semapv:ManualMappingCuration		abbreviation_or_plural
+xw:4	kn:AEs	AEs	skos:exactMatch	kk:Adverse%20events	Adverse events	semapv:ManualMappingCuration		abbreviation_or_plural
+xw:5	kn:Alcohol%20consumption	Alcohol consumption	skos:exactMatch	kk:Alcohol%20consumption	Alcohol consumption	semapv:LexicalMatching		identical
+xw:6	kn:B12	B12	skos:exactMatch	kk:B12	B12	semapv:LexicalMatching		identical
+xw:7	kn:BPI	BPI	skos:exactMatch	kk:BPI	BPI	semapv:LexicalMatching		identical
+xw:8	kn:C-SSRS	C-SSRS	skos:exactMatch	kk:C-SSRS	C-SSRS	semapv:LexicalMatching		identical
+xw:9	kn:C-SSRS%20Since%20Last%20Visit	C-SSRS Since Last Visit	skos:broadMatch	kk:C-SSRS	C-SSRS	semapv:ManualMappingCuration	OA01 C-SSRS note: Use C-SSRS Since Last Visit version	qualifier_added
+xw:10	kn:Chemistry	Chemistry	skos:exactMatch	kk:Chemistry	Chemistry	semapv:LexicalMatching		identical
+xw:11	kn:Concomitant%20medication	Concomitant medication	skos:exactMatch	kk:Concomitant%20medication	Concomitant medication	semapv:LexicalMatching		identical
+xw:12	kn:Concomitant%20medications	Concomitant medications	skos:exactMatch	kk:Concomitant%20medication	Concomitant medication	semapv:ManualMappingCuration		abbreviation_or_plural
+xw:13	kn:Confirm%20ISA%20inclusion%20and%20exclusion%20criteria	Confirm ISA inclusion and exclusion criteria	skos:exactMatch	sssom:NoTermFound		semapv:ManualMappingCuration	ISA criteria vs master criteria	kept_apart
+xw:14	kn:Cystatin%20C	Cystatin C	skos:exactMatch	kk:Cystatin%20C	Cystatin C	semapv:LexicalMatching		identical
+xw:15	kn:Demographics	Demographics	skos:exactMatch	kk:Demographics	Demographics	semapv:LexicalMatching		identical
+xw:16	kn:Dispense%20study%20intervention%20to%20participant	Dispense study intervention to participant	skos:exactMatch	kk:Dispense%20study%20intervention%20to%20participant	Dispense study intervention to participant	semapv:LexicalMatching		identical
+xw:17	kn:Dispense%20Study%20intervention%20to%20participant	Dispense Study intervention to participant	skos:exactMatch	kk:Dispense%20study%20intervention%20to%20participant	Dispense study intervention to participant	semapv:ManualMappingCuration		case_typography
+xw:18	kn:ECG	ECG	skos:exactMatch	kk:ECG	ECG	semapv:LexicalMatching		identical
+xw:19	kn:ECG%20%28single%29	ECG (single)	skos:broadMatch	kk:ECG	ECG	semapv:ManualMappingCuration	master ECG note: Triplicate ECGs; post randomization ECGs are included in each ISA	qualifier_added
+xw:20	kn:Epiregulin%20sample	Epiregulin sample	skos:exactMatch	kk:Epiregulin%20sample	Epiregulin sample	semapv:LexicalMatching		identical
+xw:21	kn:EQ-5D-5L	EQ-5D-5L	skos:exactMatch	kk:EQ-5D-5L	EQ-5D-5L	semapv:LexicalMatching		identical
+xw:22	kn:Estradiol	Estradiol	skos:exactMatch	kk:Estradiol	Estradiol	semapv:LexicalMatching		identical
+xw:23	kn:Evaluate%20all%20I%2FE%20criteria	Evaluate all I/E criteria	skos:exactMatch	sssom:NoTermFound		semapv:ManualMappingCuration	ISA criteria vs master criteria (Evaluate master protocol I/E criteria; Confirm ISA inclusion and exclusion criteria)	kept_apart
+xw:24	kn:Evaluate%20master%20protocol%20I%2FE%20criteria	Evaluate master protocol I/E criteria	skos:exactMatch	kk:Evaluate%20master%20protocol%20I%2FE%20criteria	Evaluate master protocol I/E criteria	semapv:LexicalMatching		identical
+xw:25	kn:Exploratory%20biomarker%20samples	Exploratory biomarker samples	skos:exactMatch	kk:Exploratory%20biomarker%20samples	Exploratory biomarker samples	semapv:LexicalMatching		identical
+xw:26	kn:Family%20history	Family history	skos:exactMatch	kk:Family%20history	Family history	semapv:LexicalMatching		identical
+xw:27	kn:FSH	FSH	skos:exactMatch	kk:FSH	FSH	semapv:LexicalMatching		identical
+xw:28	kn:HbA1c	HbA1c	skos:exactMatch	kk:HbA1c	HbA1c	semapv:LexicalMatching		identical
+xw:29	kn:Height	Height	skos:exactMatch	kk:Height	Height	semapv:LexicalMatching		identical
+xw:30	kn:Hematology	Hematology	skos:exactMatch	kk:Hematology	Hematology	semapv:LexicalMatching		identical
+xw:31	kn:Hemoglobin%20A1c	Hemoglobin A1c	skos:exactMatch	kk:HbA1c	HbA1c	semapv:ManualMappingCuration		abbreviation_or_plural
+xw:32	kn:HIV	HIV	skos:exactMatch	kk:HIV	HIV	semapv:LexicalMatching		identical
+xw:33	kn:Homocysteine	Homocysteine	skos:exactMatch	kk:Homocysteine	Homocysteine	semapv:LexicalMatching		identical
+xw:34	kn:Immunogenicity%20%28ADA%29%20sample	Immunogenicity (ADA) sample	skos:exactMatch	kk:Immunogenicity%20%28ADA%29%20sample	Immunogenicity (ADA) sample	semapv:LexicalMatching		identical
+xw:35	kn:Informed%20consent%20for%20ISA	Informed consent for ISA	skos:exactMatch	kk:Informed%20consent%20for%20ISA	Informed consent for ISA	semapv:LexicalMatching		identical
+xw:36	kn:Informed%20consent%20for%20master%20protocol	Informed consent for master protocol	skos:exactMatch	kk:Informed%20consent%20for%20master%20protocol	Informed consent for master protocol	semapv:LexicalMatching		identical
+xw:37	kn:Intervention%20compliance	Intervention compliance	skos:exactMatch	kk:Intervention%20compliance	Intervention compliance	semapv:LexicalMatching		identical
+xw:38	kn:Lipid%20panel	Lipid panel	skos:exactMatch	kk:Lipid%20panel	Lipid panel	semapv:LexicalMatching		identical
+xw:39	kn:LY3857210%20PK%20sample	LY3857210 PK sample	skos:broadMatch	kk:PK%20sample	PK sample	semapv:ManualMappingCuration	ISA-only in all ISAs	compound_named
+xw:40	kn:Medical%20history	Medical history	skos:exactMatch	kk:Medical%20history	Medical history	semapv:LexicalMatching		identical
+xw:41	kn:Methylmalonic%20acid	Methylmalonic acid	skos:exactMatch	kk:Methylmalonic%20acid	Methylmalonic acid	semapv:LexicalMatching		identical
+xw:42	kn:MOS%20Sleep%20Scale	MOS Sleep Scale	skos:exactMatch	kk:MOS%20Sleep%20Scale	MOS Sleep Scale	semapv:LexicalMatching		identical
+xw:43	kn:Neurological%20assessment	Neurological assessment	skos:exactMatch	kk:Neurological%20assessment	Neurological assessment	semapv:LexicalMatching		identical
+xw:44	kn:NRS	NRS	skos:exactMatch	kk:NRS%20for%20pain	NRS for pain	semapv:ManualMappingCuration	OA01/BP01/NP01 print NRS in the Scales group	abbreviation_or_plural
+xw:45	kn:NRS%20for%20pain	NRS for pain	skos:exactMatch	kk:NRS%20for%20pain	NRS for pain	semapv:LexicalMatching		identical
+xw:46	kn:Pain%20catastrophizing%20scale	Pain catastrophizing scale	skos:exactMatch	kk:Pain%20catastrophizing%20scale	Pain catastrophizing scale	semapv:LexicalMatching		identical
+xw:47	kn:Pain%20medication%20washout	Pain medication washout	skos:exactMatch	kk:Pain%20medication%20washout	Pain medication washout	semapv:LexicalMatching		identical
+xw:48	kn:Participant%20Device	Participant Device	skos:exactMatch	kk:Participant%20Device	Participant Device	semapv:LexicalMatching		identical
+xw:49	kn:Participant%20Devices	Participant Devices	skos:exactMatch	kk:Participant%20Device	Participant Device	semapv:ManualMappingCuration	band over redacted rows	abbreviation_or_plural
+xw:50	kn:Participant%20returns%20device	Participant returns device	skos:exactMatch	kk:Participant%20returns%20device	Participant returns device	semapv:LexicalMatching		identical
+xw:51	kn:Participant%20returns%20unused%20study%20intervention	Participant returns unused study intervention	skos:exactMatch	sssom:NoTermFound		semapv:ManualMappingCuration	distinct from Participant returns device	kept_apart
+xw:52	kn:PDEP	PDEP	skos:exactMatch	kk:PDEP	PDEP	semapv:LexicalMatching		identical
+xw:53	kn:PGI	PGI	skos:exactMatch	kk:PGI	PGI	semapv:LexicalMatching		identical
+xw:54	kn:Pharmacogenetic%20sample	Pharmacogenetic sample	skos:exactMatch	kk:Pharmacogenetic%20sample	Pharmacogenetic sample	semapv:LexicalMatching		identical
+xw:55	kn:Physical%20examination	Physical examination	skos:exactMatch	kk:Physical%20examination	Physical examination	semapv:LexicalMatching		identical
+xw:56	kn:PK%20sample	PK sample	skos:exactMatch	kk:PK%20sample	PK sample	semapv:LexicalMatching		identical
+xw:57	kn:Placebo%20response%20video%20training%20%28participant%29	Placebo response video training (participant)	skos:exactMatch	kk:Placebo%20response%20video%20training%20%28participant%29	Placebo response video training (participant)	semapv:LexicalMatching		identical
+xw:58	kn:Preexisting%20conditions	Preexisting conditions	skos:exactMatch	kk:Preexisting%20conditions	Preexisting conditions	semapv:LexicalMatching		identical
+xw:59	kn:Prespecified%20CLBP%20medical%20history	Prespecified CLBP medical history	skos:exactMatch	kk:Prespecified%20CLBP%20medical%20history	Prespecified CLBP medical history	semapv:LexicalMatching		identical
+xw:60	kn:Prespecified%20DPNP%20medical%20history	Prespecified DPNP medical history	skos:exactMatch	kk:Prespecified%20DPNP%20medical%20history	Prespecified DPNP medical history	semapv:LexicalMatching		identical
+xw:61	kn:Prespecified%20OA%20medical%20history	Prespecified OA medical history	skos:exactMatch	kk:Prespecified%20OA%20medical%20history	Prespecified OA medical history	semapv:LexicalMatching		identical
+xw:62	kn:Recreational%20drug%20use	Recreational drug use	skos:exactMatch	kk:Recreational%20drug%20use	Recreational drug use	semapv:LexicalMatching		identical
+xw:63	kn:Reinforce%20pain%20assessment%20guidelines	Reinforce pain assessment guidelines	skos:exactMatch	kk:Reinforce%20pain%20assessment%20guidelines	Reinforce pain assessment guidelines	semapv:LexicalMatching		identical
+xw:64	kn:Rescue%20medication%20usage%20reporting	Rescue medication usage reporting	skos:exactMatch	kk:Rescue%20medication%20usage%20reporting	Rescue medication usage reporting	semapv:LexicalMatching		identical
+xw:65	kn:RMDQ	RMDQ	skos:exactMatch	kk:RMDQ	RMDQ	semapv:LexicalMatching		identical
+xw:66	kn:Scales%2C%20Questionnaires%2C%20and%20Outcome%20Measures	Scales, Questionnaires, and Outcome Measures	skos:exactMatch	kk:Scales%2C%20Questionnaires%2C%20and%20Outcome%20Measures	Scales, Questionnaires, and Outcome Measures	semapv:LexicalMatching		identical
+xw:67	kn:Self-Harm%20Follow-up%20Form	Self-Harm Follow-up Form	skos:exactMatch	kk:Self-Harm%20Follow-Up%20form	Self-Harm Follow-Up form	semapv:ManualMappingCuration		case_typography
+xw:68	kn:Self-Harm%20Follow-Up%20form	Self-Harm Follow-Up form	skos:exactMatch	kk:Self-Harm%20Follow-Up%20form	Self-Harm Follow-Up form	semapv:LexicalMatching		identical
+xw:69	kn:Self-Harm%20Supplement%20form	Self-Harm Supplement form	skos:exactMatch	kk:Self-Harm%20Supplement%20form	Self-Harm Supplement form	semapv:LexicalMatching		identical
+xw:70	kn:Self-Harm%20Supplement%20Form	Self-Harm Supplement Form	skos:exactMatch	kk:Self-Harm%20Supplement%20form	Self-Harm Supplement form	semapv:ManualMappingCuration		case_typography
+xw:71	kn:Self-pain%20positioning%20questionnaire	Self-pain positioning questionnaire	skos:exactMatch	kk:Self-pain%20positioning%20questionnaire	Self-pain positioning questionnaire	semapv:LexicalMatching		identical
+xw:72	kn:Serum%20pregnancy	Serum pregnancy	skos:exactMatch	kk:Serum%20pregnancy	Serum pregnancy	semapv:LexicalMatching		identical
+xw:73	kn:Somatostatin-regulated%20hormone%20sample	Somatostatin-regulated hormone sample	skos:exactMatch	kk:Somatostatin-regulated%20hormone%20sample	Somatostatin-regulated hormone sample	semapv:LexicalMatching		identical
+xw:74	kn:Somatostatin-related%20biomarker%20sample	Somatostatin-related biomarker sample	skos:exactMatch	kk:Somatostatin-regulated%20hormone%20sample	Somatostatin-regulated hormone sample	semapv:ManualMappingCuration	OA03 Appendix 1 lists the tests under Other SST-Regulated Hormones as BP03/NP03 do	document_supported
+xw:75	kn:Study%20intervention	Study intervention	skos:exactMatch	kk:Study%20intervention	Study intervention	semapv:LexicalMatching		identical
+xw:76	kn:Study%20intervention%20administration	Study intervention administration	skos:exactMatch	sssom:NoTermFound		semapv:ManualMappingCuration	LY3857210 wording; LY3526318/LY3556050 print Study intervention	kept_apart
+xw:77	kn:Study%20intervention%20IV%20infusion	Study intervention IV infusion	skos:exactMatch	kk:Study%20intervention%20IV%20infusion	Study intervention IV infusion	semapv:LexicalMatching		identical
+xw:78	kn:Study%20Intervention%20IV%20infusion	Study Intervention IV infusion	skos:exactMatch	kk:Study%20intervention%20IV%20infusion	Study intervention IV infusion	semapv:ManualMappingCuration		case_typography
+xw:79	kn:Thyroid%20panel	Thyroid panel	skos:exactMatch	sssom:NoTermFound		semapv:ManualMappingCuration	related to master TSH, not the same test set	kept_apart
+xw:80	kn:TSH	TSH	skos:exactMatch	kk:TSH	TSH	semapv:LexicalMatching		identical
+xw:81	kn:Urinalysis	Urinalysis	skos:exactMatch	kk:Urinalysis	Urinalysis	semapv:LexicalMatching		identical
+xw:82	kn:Urine%20Chemistries	Urine Chemistries	skos:exactMatch	sssom:NoTermFound		semapv:ManualMappingCuration	distinct from Urinalysis in the same ISA	kept_apart
+xw:83	kn:Urine%20drug%20screen	Urine drug screen	skos:exactMatch	kk:Urine%20drug%20screen	Urine drug screen	semapv:LexicalMatching		identical
+xw:84	kn:Urine%20pregnancy	Urine pregnancy	skos:exactMatch	kk:Urine%20pregnancy	Urine pregnancy	semapv:LexicalMatching		identical
+xw:85	kn:VAS%20for%20pain	VAS for pain	skos:exactMatch	kk:VAS%20for%20pain	VAS for pain	semapv:LexicalMatching		identical
+xw:86	kn:Vital%20signs	Vital signs	skos:exactMatch	kk:Vital%20signs	Vital signs	semapv:LexicalMatching		identical
+xw:87	kn:Weight	Weight	skos:exactMatch	kk:Weight	Weight	semapv:LexicalMatching		identical
+xw:88	kn:WOMAC	WOMAC	skos:exactMatch	kk:WOMAC	WOMAC	semapv:LexicalMatching		identical
+xw:89	kn:WOMAC%C2%AE	WOMAC®	skos:exactMatch	kk:WOMAC	WOMAC	semapv:ManualMappingCuration		case_typography

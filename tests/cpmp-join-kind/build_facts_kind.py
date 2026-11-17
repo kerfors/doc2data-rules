@@ -1,10 +1,10 @@
 """Transcription step for the CPMP join 'kind' rule test.
 
 Reads the same inputs as early-clinical-design-research/cpmp-soa-join/cpmp_soa_join.ipynb
-(soa2usdm-collections cpmp at cf9541d: consolidated JSON per protocol + studies_protocols.xlsx; and the
-join's activity_crosswalk.csv) and writes them as plain facts. No decisions: visit numbers are read from the
-printed visit header as the notebook does, activity names stay as printed, the crosswalk goes into its own
-graph as mapping data.
+(soa2usdm-collections cpmp at cf9541d: consolidated JSON per protocol + studies_protocols.xlsx) and writes them
+as plain facts. No decisions: visit numbers are read from the printed visit header as the notebook does, activity
+names stay as printed. The join's activity crosswalk is mapping data and is not read here: crosswalk_sssom.py
+makes it an SSSOM set, sssom_rdf.py its own graph.
 Run from /tmp/jt/kind. Writes facts.trig.
 """
 import json
@@ -24,7 +24,6 @@ VISIT_NO = re.compile(r"^(V\s?\d+|ED)$")
 
 ds = rdflib.Dataset()
 g = ds.graph(URIRef("urn:k:g:facts"))
-xg = ds.graph(URIRef("urn:k:g:crosswalk"))
 
 
 def iri(*parts):
@@ -87,15 +86,5 @@ for r in studies.itertuples():
             g.add((an, F.refersToRow, iri("row", nct, x)))
         n_notes += 1
 
-# The join's activity crosswalk: mapping data, as decided in that repo (name as printed -> activity key).
-xw = pd.read_csv(Path("inputs/cpmp-soa-join/activity_crosswalk.csv"), dtype=str).fillna("")
-for k, r in enumerate(xw.itertuples()):
-    e = iri("xw", k)
-    xg.add((e, RDF.type, F.CrosswalkEntry))
-    xg.add((e, F.nameAsPrinted, Literal(r.name_as_printed)))
-    xg.add((e, F.activityKey, Literal(r.activity_key)))
-    xg.add((e, F.use, Literal(r.use)))
-    xg.add((e, F.status, Literal(r.status)))
-
 ds.serialize("facts.trig", format="trig")
-print(f"{len(g)} facts, {len(xg)} crosswalk triples; {len(studies)} documents, {n_marks} marks, {n_notes} annotations")
+print(f"{len(g)} facts; {len(studies)} documents, {n_marks} marks, {n_notes} annotations")

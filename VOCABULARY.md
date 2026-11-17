@@ -39,9 +39,9 @@ Data graphs: any graph in a rule file named `urn:jt:g:*` (except `urn:jt:g:rules
 mapping data the rules join to (a level map, an alignment). Mapping data is never rule content.
 
 Mapping data in SSSOM: TSV for review, turned by `machinery/sssom_rdf.py` into `owl:Axiom` form in a named
-graph. One extension slot: `object_codelist` = `jt:objectCodelist`, declared in each set's
-`extension_definitions`: the CDISC code list the object concept is taken from (held in the mapping set until
-USDM 4.1 brings CT as data).
+graph. Extension slots, declared in each set's `extension_definitions`: `object_codelist` = `jt:objectCodelist`,
+the CDISC code list the object concept is taken from (held in the mapping set until USDM 4.1 brings CT as data);
+`basis` = `jt:basis`, the reason a crosswalk entry gives for its correspondence (CPMP crosswalk).
 
 ## Conventions used by the tests
 - Facts (transcripts) live in their own graph and carry no decisions.
