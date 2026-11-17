@@ -1,0 +1,264 @@
+# tests/lzzt-layer1: d2d transcript of the CDISC Pilot protocol H2Q-MC-LZZT(c), PDF pages 1 (title page) and 7
+# (section 2, Objectives). Printed text as in the pinned text layer, whitespace collapsed. The file of record is
+# register entry e0006 (register/register-collections.trig). The printed copyright line is kept as printed (p1.notice).
+@prefix d2d:     <urn:jt:d2d:> .
+@prefix obo:     <http://purl.obolibrary.org/obo/> .
+@prefix oa:      <http://www.w3.org/ns/oa#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage1> {
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.notice> a d2d:Paragraph ;
+    d2d:localId "p1.notice" ;
+    d2d:order 1 ;
+    d2d:text "The information contained in this clinical study protocol is Copyright © 2006 Eli Lilly and Company." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.notice/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/1> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.notice/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=1" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "The information contained in this clinical study protocol is Copyright © 2006 Eli Lilly and Company." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.compound> a d2d:Paragraph ;
+    d2d:localId "p1.compound" ;
+    d2d:order 2 ;
+    d2d:text "Xanomeline (LY246708)" ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.compound/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/1> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.compound/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=1" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "Xanomeline (LY246708)" ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.protocol> a d2d:Paragraph ;
+    d2d:localId "p1.protocol" ;
+    d2d:order 3 ;
+    d2d:text "Protocol H2Q-MC-LZZT(c)" ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.protocol/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/1> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.protocol/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=1" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "Protocol H2Q-MC-LZZT(c)" ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.title> a obo:IAO_0000305 ;
+    d2d:localId "p1.title" ;
+    d2d:order 4 ;
+    d2d:text "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease" ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.title/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/1> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/p1.title/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=1" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease" ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2> a d2d:Section ;
+    d2d:localId "s2" ;
+    d2d:order 1 ;
+    d2d:number "2." ;
+    d2d:heading "Objectives" ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1> a d2d:Section ;
+    d2d:localId "s2.1" ;
+    d2d:order 1 ;
+    d2d:number "2.1." ;
+    d2d:heading "Primary Objectives" ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.lead> a d2d:Sentence, d2d:ListLead ;
+    d2d:localId "s2.1.lead" ;
+    d2d:order 1 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1> ;
+    d2d:text "The primary objectives of this study are" ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.lead/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.lead/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=7" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "The primary objectives of this study are" ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.list> a d2d:List ;
+    d2d:localId "s2.1.list" ;
+    d2d:order 2 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.list.1> a d2d:ListItem ;
+    d2d:localId "s2.1.list.1" ;
+    d2d:order 1 ;
+    d2d:inList <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.list> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1> ;
+    d2d:text "To determine if there is a statistically significant relationship (overall Type 1 error rate, α=.05) between the change in both ADAS-Cog (see Attachment LZZT.2) and CIBIC+ (see Attachment LZZT.3) scores, and drug dose (0, 50 cm2 [54 mg], and 75 cm2 [81 mg])." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.list.1/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.list.1/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=7" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "To determine if there is a statistically significant relationship (overall Type 1 error rate, α=.05) between the change in both ADAS-Cog (see Attachment LZZT.2) and CIBIC+ (see Attachment LZZT.3) scores, and drug dose (0, 50 cm2 [54 mg], and 75 cm2 [81 mg])." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.list.2> a d2d:ListItem ;
+    d2d:localId "s2.1.list.2" ;
+    d2d:order 2 ;
+    d2d:inList <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.list> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1> ;
+    d2d:text "To document the safety profile of the xanomeline TTS." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.list.2/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.1.list.2/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=7" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "To document the safety profile of the xanomeline TTS." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2> a d2d:Section ;
+    d2d:localId "s2.2" ;
+    d2d:order 2 ;
+    d2d:number "2.2." ;
+    d2d:heading "Secondary Objectives" ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.lead> a d2d:Sentence, d2d:ListLead ;
+    d2d:localId "s2.2.lead" ;
+    d2d:order 1 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2> ;
+    d2d:text "The secondary objectives of this study are" ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.lead/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.lead/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=7" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "The secondary objectives of this study are" ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list> a d2d:List ;
+    d2d:localId "s2.2.list" ;
+    d2d:order 2 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.1> a d2d:ListItem ;
+    d2d:localId "s2.2.list.1" ;
+    d2d:order 1 ;
+    d2d:inList <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2> ;
+    d2d:text "To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas (see Attachment LZZT.4)." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.1/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.1/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=7" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas (see Attachment LZZT.4)." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.2> a d2d:ListItem ;
+    d2d:localId "s2.2.list.2" ;
+    d2d:order 2 ;
+    d2d:inList <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2> ;
+    d2d:text "To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas (see Attachment LZZT.5)." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.2/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.2/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=7" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas (see Attachment LZZT.5)." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.3> a d2d:ListItem ;
+    d2d:localId "s2.2.list.3" ;
+    d2d:order 3 ;
+    d2d:inList <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2> ;
+    d2d:text "To assess the dose-dependent improvements in an extended assessment of cognition that integrates attention/concentration tasks. The Alzheimer’s Disease Assessment Scale-14 item Cognitive Subscale, hereafter referred to as ADAS-Cog (14), will be used for this assessment (see Attachment LZZT.2)." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.3/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.3/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=7" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "To assess the dose-dependent improvements in an extended assessment of cognition that integrates attention/concentration tasks. The Alzheimer’s Disease Assessment Scale-14 item Cognitive Subscale, hereafter referred to as ADAS-Cog (14), will be used for this assessment (see Attachment LZZT.2)." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.4> a d2d:ListItem ;
+    d2d:localId "s2.2.list.4" ;
+    d2d:order 4 ;
+    d2d:inList <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2> ;
+    d2d:text "To assess the treatment response as a function of Apo E genotype." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.4/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s2.2.list.4/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=7" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "To assess the treatment response as a function of Apo E genotype." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/1> a d2d:Page ;
+    d2d:pageIndex 1 ;
+    d2d:pageLabel "1" .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/7> a d2d:Page ;
+    d2d:pageIndex 7 ;
+    d2d:pageLabel "7" .
+}
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage1/run/1> {
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage1> a prov:Entity ;
+    prov:wasGeneratedBy <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage1/run/1> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage1/run/1> a prov:Activity ;
+    prov:used <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> , <urn:jt:sha256/65238343be6b812e320ee86f8d12fae7553408f9fbf760c0115d2364b5e0ce09> , <urn:jt:sha256/804faa8aaa9b208421b4dbfcc4eb5ebbf20b4183042e7c3dfe2a70f6b9fa62f5> ;
+    d2d:textNormalization d2d:whitespaceCollapsed ;
+    prov:qualifiedAssociation [ prov:agent <urn:jt:agent/claude> ; prov:hadRole d2d:transcriber ] .
+
+<urn:jt:agent/claude> a prov:SoftwareAgent ;
+    rdfs:label "Claude (Anthropic), Claude Opus 5.5" .
+
+<urn:jt:sha256/65238343be6b812e320ee86f8d12fae7553408f9fbf760c0115d2364b5e0ce09> a prov:Entity ;
+    prov:wasDerivedFrom <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    d2d:firstPageIndex 1 .
+
+<urn:jt:sha256/804faa8aaa9b208421b4dbfcc4eb5ebbf20b4183042e7c3dfe2a70f6b9fa62f5> a prov:Entity ;
+    prov:wasDerivedFrom <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    d2d:firstPageIndex 7 .
+}

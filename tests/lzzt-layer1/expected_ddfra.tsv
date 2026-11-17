@@ -1,0 +1,24 @@
+usdm_path	usdm_text	class	element	element_text
+titles/Study Acronym	LZZT	contained	p1.protocol;s2.1.list.1;s2.2.list.1;s2.2.list.2;s2.2.list.3	
+titles/Brief Study Title	Xanomeline (LY246708)	equal	p1.compound	Xanomeline (LY246708)
+titles/Official Study Title	Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer's Disease	differs	p1.title	Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease
+titles/Public Study Title	Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer's Disease	differs	p1.title	Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease
+studyIdentifiers/Organization_1	H2Q-MC-LZZT	contained	p1.protocol	
+studyIdentifiers/Organization_2	NCT12345678	not printed		
+objectives/Objective_1	To determine if there is a statistically significant relationship (overall Type 1 erroralpha=0.05) between the change in both the ADAS-Cog (11) and CIBIC+ scores, and drug dose (0, 50 cm2 [54 mg], and 75 cm2 [81 mg]).	differs	s2.1.list.1	To determine if there is a statistically significant relationship (overall Type 1 error rate, α=.05) between the change in both ADAS-Cog (see Attachment LZZT.2) and CIBIC+ (see Attachment LZZT.3) scores, and drug dose (0, 50 cm2 [54 mg], and 75 cm2 [81 mg]).
+objectives/Objective_1/endpoints/Endpoint_1	Alzheimer's Disease Assessment Scale - Cognitive Subscale, total of 11 items [ADAS-Cog (11)] at Week 24	not printed		
+objectives/Objective_1/endpoints/Endpoint_2	Video-referenced Clinician’s Interview-based Impression of Change (CIBIC+) at Week 24	not printed		
+objectives/Objective_2	To document the safety profile of the xanomeline TTS.	equal	s2.1.list.2	To document the safety profile of the xanomeline TTS.
+objectives/Objective_2/endpoints/Endpoint_3	Adverse events	not printed		
+objectives/Objective_2/endpoints/Endpoint_4	Vital signs (weight, standing and supine blood pressure, heart rate)	not printed		
+objectives/Objective_2/endpoints/Endpoint_5	Laboratory evaluations (Change from Baseline)	not printed		
+objectives/Objective_3	To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas.	differs	s2.2.list.1	To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas (see Attachment LZZT.4).
+objectives/Objective_3/endpoints/Endpoint_6	Alzheimer's Disease Assessment Scale - Cognitive Subscale, total of 11 items [ADAS-Cog (11)] at Weeks 8 and 16	not printed		
+objectives/Objective_3/endpoints/Endpoint_7	Video-referenced Clinician’s Interview-based Impression of Change (CIBIC+) at Weeks 8 and 16	not printed		
+objectives/Objective_3/endpoints/Endpoint_8	Mean Revised Neuropsychiatric Inventory (NPI-X) from Week 4 to Week 24	not printed		
+objectives/Objective_4	To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas (see Attachment LZZT.5).	equal	s2.2.list.2	To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas (see Attachment LZZT.5).
+objectives/Objective_4/endpoints/Endpoint_9	*** To be determined from protocol ***	placeholder		
+objectives/Objective_5	To assess the dose-dependent improvements in an extended assessment of cognition that integrates attention/concentration tasks. The Alzheimer's Disease Assessment Scale-14 item Cognitive Subscale, hereafter referred to as ADAS-Cog (14), will be used for this assessment (see Attachment LZZT.2).	differs	s2.2.list.3	To assess the dose-dependent improvements in an extended assessment of cognition that integrates attention/concentration tasks. The Alzheimer’s Disease Assessment Scale-14 item Cognitive Subscale, hereafter referred to as ADAS-Cog (14), will be used for this assessment (see Attachment LZZT.2).
+objectives/Objective_5/endpoints/Endpoint_10	*** To be determined from protocol ***	placeholder		
+objectives/Objective_6	To assess the treatment response as a function of Apo E genotype.	equal	s2.2.list.4	To assess the treatment response as a function of Apo E genotype.
+objectives/Objective_6/endpoints/Endpoint_11	*** To be determined from protocol ***	placeholder		
