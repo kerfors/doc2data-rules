@@ -1,0 +1,151 @@
+# tests/lzzt-endpoints: d2d transcript of the CDISC Pilot protocol H2Q-MC-LZZT(c), PDF page 29, section 3.9.1.2
+# Efficacy Criteria (the whole section: heading and its 7 sentences, in two printed paragraphs; the paragraph break is not
+# recorded). Printed text as in the pinned text layer, whitespace collapsed. File of record: register e0006.
+@prefix d2d:     <urn:jt:d2d:> .
+@prefix oa:      <http://www.w3.org/ns/oa#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage2a> {
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> a d2d:Section ;
+    d2d:localId "s3.9.1.2" ;
+    d2d:order 1 ;
+    d2d:number "3.9.1.2." ;
+    d2d:heading "Efficacy Criteria" ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/29> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.1> a d2d:Sentence ;
+    d2d:localId "s3.9.1.2.sent.1" ;
+    d2d:order 1 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:text "Group mean changes from baseline in the primary efficacy parameters will serve as efficacy criteria." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.1/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/29> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.1/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=29" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "Group mean changes from baseline in the primary efficacy parameters will serve as efficacy criteria." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.2> a d2d:Sentence ;
+    d2d:localId "s3.9.1.2.sent.2" ;
+    d2d:order 2 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:text "The ADAS-Cog (11) and the video-referenced CIBIC+ will serve as the primary efficacy instruments." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.2/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/29> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.2/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=29" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "The ADAS-Cog (11) and the video-referenced CIBIC+ will serve as the primary efficacy instruments." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.3> a d2d:Sentence ;
+    d2d:localId "s3.9.1.2.sent.3" ;
+    d2d:order 3 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:text "Secondary efficacy instruments will include the DAD, the NPI-X, and the ADAS-Cog (14)." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.3/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/29> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.3/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=29" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "Secondary efficacy instruments will include the DAD, the NPI-X, and the ADAS-Cog (14)." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.4> a d2d:Sentence ;
+    d2d:localId "s3.9.1.2.sent.4" ;
+    d2d:order 4 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:text "The procedures and types of analyses to be done are outlined in Section 4." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.4/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/29> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.4/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=29" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "The procedures and types of analyses to be done are outlined in Section 4." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.5> a d2d:Sentence ;
+    d2d:localId "s3.9.1.2.sent.5" ;
+    d2d:order 5 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:text "The primary analysis of efficacy will include only the data obtained up to and including the visit of discontinuation of study drug." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.5/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/29> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.5/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=29" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "The primary analysis of efficacy will include only the data obtained up to and including the visit of discontinuation of study drug." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.6> a d2d:Sentence ;
+    d2d:localId "s3.9.1.2.sent.6" ;
+    d2d:order 6 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:text "Furthermore, the primary analysis will not include efficacy data obtained at any visit where the study drug was not administered in the preceding three days." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.6/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/29> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.6/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=29" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "Furthermore, the primary analysis will not include efficacy data obtained at any visit where the study drug was not administered in the preceding three days." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.7> a d2d:Sentence ;
+    d2d:localId "s3.9.1.2.sent.7" ;
+    d2d:order 7 ;
+    d2d:inSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:withinSection <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2> ;
+    d2d:text "Analyses that include the retrieved dropouts are considered secondary." ;
+    d2d:anchor <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.7/anchor/1> ;
+    d2d:onPage <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/29> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/s3.9.1.2.sent.7/anchor/1> a oa:SpecificResource ;
+    oa:hasSource <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    oa:hasSelector [ a oa:FragmentSelector ;
+        dcterms:conformsTo <http://tools.ietf.org/rfc/rfc3778> ;
+        rdf:value "page=29" ;
+        oa:refinedBy [ a oa:TextQuoteSelector ; oa:exact "Analyses that include the retrieved dropouts are considered secondary." ] ] .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/page/29> a d2d:Page ;
+    d2d:pageIndex 29 ;
+    d2d:pageLabel "29" .
+}
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage2a/run/1> {
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage2a> a prov:Entity ;
+    prov:wasGeneratedBy <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage2a/run/1> .
+
+<urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage2a/run/1> a prov:Activity ;
+    prov:used <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> , <urn:jt:sha256/af758677705b7c0ad1df92af37665afda45883229b61f9732f80a879549365e5> ;
+    d2d:textNormalization d2d:whitespaceCollapsed ;
+    prov:qualifiedAssociation [ prov:agent <urn:jt:agent/claude> ; prov:hadRole d2d:transcriber ] .
+
+<urn:jt:agent/claude> a prov:SoftwareAgent ;
+    rdfs:label "Claude (Anthropic), Claude Opus 5.5" .
+
+<urn:jt:sha256/af758677705b7c0ad1df92af37665afda45883229b61f9732f80a879549365e5> a prov:Entity ;
+    prov:wasDerivedFrom <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> ;
+    d2d:firstPageIndex 29 .
+}

@@ -1,0 +1,23 @@
+#curie_map:
+#  lz: 'urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/'
+#  eo: 'urn:jt:mapping/lzzt/eo/'
+#  NCIT: http://purl.obolibrary.org/obo/NCIT_
+#  skos: http://www.w3.org/2004/02/skos/core#
+#  semapv: https://w3id.org/semapv/vocab/
+#  orcid: https://orcid.org/
+#  jt: 'urn:jt:rule-vocab:'
+#mapping_set_id: urn:jt:mapping-set:lzzt-endpoint-objective
+#mapping_set_title: LZZT endpoint -> objective (instrument named in a criteria sentence -> the objective that prints it)
+#mapping_set_description: Keyed by the d2d transcripts of the CDISC Pilot protocol (tests/lzzt-layer1, tests/lzzt-endpoints). Objects and labels as in NCI EVS DDF Terminology 2026-09-25 (CDISC Submission Value).
+#license: https://opensource.org/licenses/MIT
+#object_source_version: '2026-09-25'
+#extension_definitions:
+#- slot_name: subject_mention
+#  property: jt:subjectMention
+#  type_hint: xsd:string
+record_id	subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	reviewer_id	match_string	subject_mention	comment
+eo:1	lz:s3.9.1.2.sent.2	The ADAS-Cog (11) and the video-referenced CIBIC+ will serve as the primary efficacy instruments.	skos:relatedMatch	lz:s2.1.list.1	To determine if there is a statistically significant relationship (overall Type 1 error rate, α=.05) between the change in both ADAS-Cog (see Attachment LZZT.2) and CIBIC+ (see Attachment LZZT.3) scores, and drug dose (0, 50 cm2 [54 mg], and 75 cm2 [81 mg]).	semapv:ManualMappingCuration	orcid:0000-0002-1491-0940	ADAS-Cog	ADAS-Cog (11)	The objective names ADAS-Cog (no item count); the criteria sentence names ADAS-Cog (11) as primary instrument.
+eo:2	lz:s3.9.1.2.sent.2	The ADAS-Cog (11) and the video-referenced CIBIC+ will serve as the primary efficacy instruments.	skos:relatedMatch	lz:s2.1.list.1	To determine if there is a statistically significant relationship (overall Type 1 error rate, α=.05) between the change in both ADAS-Cog (see Attachment LZZT.2) and CIBIC+ (see Attachment LZZT.3) scores, and drug dose (0, 50 cm2 [54 mg], and 75 cm2 [81 mg]).	semapv:LexicalMatching		CIBIC+	video-referenced CIBIC+	Printed on both sides.
+eo:3	lz:s3.9.1.2.sent.3	Secondary efficacy instruments will include the DAD, the NPI-X, and the ADAS-Cog (14).	skos:relatedMatch	lz:s2.2.list.1	To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas (see Attachment LZZT.4).	semapv:LexicalMatching		NPI-X	NPI-X	Printed on both sides.
+eo:4	lz:s3.9.1.2.sent.3	Secondary efficacy instruments will include the DAD, the NPI-X, and the ADAS-Cog (14).	skos:relatedMatch	lz:s2.2.list.2	To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas (see Attachment LZZT.5).	semapv:LexicalMatching		DAD	DAD	Printed on both sides.
+eo:5	lz:s3.9.1.2.sent.3	Secondary efficacy instruments will include the DAD, the NPI-X, and the ADAS-Cog (14).	skos:relatedMatch	lz:s2.2.list.3	To assess the dose-dependent improvements in an extended assessment of cognition that integrates attention/concentration tasks. The Alzheimer’s Disease Assessment Scale-14 item Cognitive Subscale, hereafter referred to as ADAS-Cog (14), will be used for this assessment (see Attachment LZZT.2).	semapv:LexicalMatching		ADAS-Cog (14)	ADAS-Cog (14)	Printed on both sides; objective 2.1.1 prints ADAS-Cog without (14).

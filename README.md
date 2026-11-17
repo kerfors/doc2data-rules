@@ -32,6 +32,7 @@ provenance — next to the same objective in CDISC's published USDM build.
 | `tests/cpmp-q6` | CPMP Q6: which master defaults an ISA takes, overrides or is silent on (`01_build_modules.py`) | 6 | **48/48** rows identical to the Python build |
 | `tests/lzzt-layer1` | Layer 1 on a public protocol: the d2d transcript of the CDISC Pilot protocol (LZZT) pages 1 and 7, checked against the PDF, and compared per value with the DDF-RA USDM build | 0 | verbatim, structure and register checks **ok**; 23 DDF-RA values: 4 equal, 2 contained, 5 differ, 9 not printed on these pages, 3 placeholders (run with `run_lzzt.sh`, see below) |
 | `tests/lzzt-usdm` | Layers 2 and 3 on the same pages: rules + three decided SSSOM rows → USDM objectives (with level Codes) and the official title, checked, and compared per value with the DDF-RA build | 4 | 6 Objectives (2 Primary, 4 Secondary), 1 StudyTitle; SHACL **conforms** (0 results); 7/7 Codes in DDF CT 2026-09-25; coverage 9 of 15 printed elements used; drift ok; 82 comparison rows (run with `run_lzzt.sh`) |
+| `tests/lzzt-endpoints` | Stage 2a: endpoints from section 3.9.1.2 (p.29), each inside the objective that prints the same instrument, built with stage 1 | 2 (+4) | 5 Endpoints (2 Primary, 3 Secondary); SHACL **conforms**; 12/12 Codes in DDF CT; drift ok; DDF-RA 11 endpoints, 3 paired (run with `run_lzzt.sh`) |
 | `tests/remapcap-q7` | REMAP-CAP Q7: DSA statements on the Core, what they resolve to, and which are affected by Core 4.0 → 4.1 (remapcap-design-modules scripts 07, 08) | 15 | **139/139** readings and **54/54** affected statements identical; "changed in 4.1" comes from comparing two runs, not from a rule (run with `run_remapcap.sh`, see below) |
 
 The two CPMP tests together are a rule-based path from the SoA documents to the design-module allocations
@@ -96,7 +97,7 @@ vocab/d2d.ttl, TRANSCRIPT-VOCABULARY.md  the d2d transcript vocabulary and its d
 requirements.txt        rdflib, pyoxigraph, pyshacl, pandas, openpyxl, pyyaml, pdfplumber
 run_all.sh              rebuild and check the register and the two CPMP tests
 run_remapcap.sh         the REMAP-CAP test (needs its not-redistributed section text)
-run_lzzt.sh             the LZZT worked example, both tests (needs four downloads, see the two test READMEs)
+run_lzzt.sh             the LZZT worked example, all its tests (needs four downloads, see the test READMEs)
 WALKTHROUGH.md          one LZZT objective from the page to USDM and back
 LICENSE                 MIT
 tests/<test>/           README, facts script (build_facts*.py), rules, check/compare, inputs/ (pinned, sha256), out/
@@ -124,8 +125,9 @@ Identifiers: all IRIs are `urn:jt:` for now. They are provisional and will move 
 3. **Align with usdm-rdf conventions**: node IRIs = base + USDM id, done in the protocol tests outside this
    repository; join to CT as data when USDM 4.1 lands.
 4. **A public worked example**: stage 1 done 2026-11-17, the CDISC Pilot protocol (published by d4k and CDISC
-   DDF-RA), all three layers on pages 1 and 7 (`tests/lzzt-layer1`, `tests/lzzt-usdm`, `WALKTHROUGH.md`). Next
-   stages: arms, interventions, efficacy measures as the source for endpoints, the SoA pages, d4k's build.
+   DDF-RA), all three layers on pages 1 and 7 (`tests/lzzt-layer1`, `tests/lzzt-usdm`, `WALKTHROUGH.md`); stage 2a,
+   endpoints from page 29 (`tests/lzzt-endpoints`). Next stages: the SoA link to soa2usdm, arms, interventions,
+   d4k's build.
 5. **Resolvable IRIs**: from `urn:jt:` to `https://w3id.org/people/kerfors/doc2data/`, with its w3id entry.
 
 ## Licence

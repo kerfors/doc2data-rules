@@ -1,0 +1,14 @@
+ddfra_objective	our_objective	ddfra_endpoint	ddfra_text	ddfra_level	paired_by	our_text	our_level
+Objective_1	s2.1.list.1	Endpoint_1	Alzheimer's Disease Assessment Scale - Cognitive Subscale, total of 11 items [ADAS-Cog (11)] at Week 24	Primary Endpoint	ADAS-Cog	ADAS-Cog (11)	Primary Endpoint
+Objective_1	s2.1.list.1	Endpoint_2	Video-referenced Clinician’s Interview-based Impression of Change (CIBIC+) at Week 24	Primary Endpoint	CIBIC+	video-referenced CIBIC+	Primary Endpoint
+Objective_2	s2.1.list.2	Endpoint_3	Adverse events	Primary Endpoint			
+Objective_2	s2.1.list.2	Endpoint_4	Vital signs (weight, standing and supine blood pressure, heart rate)	Primary Endpoint			
+Objective_2	s2.1.list.2	Endpoint_5	Laboratory evaluations (Change from Baseline)	Primary Endpoint			
+Objective_3	s2.2.list.1	Endpoint_6	Alzheimer's Disease Assessment Scale - Cognitive Subscale, total of 11 items [ADAS-Cog (11)] at Weeks 8 and 16	Secondary Endpoint			
+Objective_3	s2.2.list.1	Endpoint_7	Video-referenced Clinician’s Interview-based Impression of Change (CIBIC+) at Weeks 8 and 16	Secondary Endpoint			
+Objective_3	s2.2.list.1	Endpoint_8	Mean Revised Neuropsychiatric Inventory (NPI-X) from Week 4 to Week 24	Secondary Endpoint	NPI-X	NPI-X	Secondary Endpoint
+Objective_4	s2.2.list.2	Endpoint_9	*** To be determined from protocol ***	Secondary Endpoint			
+Objective_4	s2.2.list.2					DAD	Secondary Endpoint
+Objective_5	s2.2.list.3	Endpoint_10	*** To be determined from protocol ***	Secondary Endpoint			
+Objective_5	s2.2.list.3					ADAS-Cog (14)	Secondary Endpoint
+Objective_6	s2.2.list.4	Endpoint_11	*** To be determined from protocol ***	Secondary Endpoint			

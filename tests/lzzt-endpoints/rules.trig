@@ -1,0 +1,83 @@
+# LZZT stage 2a as L/R rules: USDM Endpoints from section 3.9.1.2 (tests/lzzt-endpoints/transcript.trig), each inside
+# the Objective that stage 1 builds (tests/lzzt-usdm/rules.trig, run together with this file). Mapping data: el.sssom.tsv
+# (which criteria sentence gives which endpoint level) and eo.sssom.tsv (which instrument, named in which sentence,
+# belongs to which printed objective, by a match_string printed on both sides). No instrument, objective or level is
+# written in a rule. Endpoint text = the instrument as printed in the sentence (the row's subject_mention).
+# name and purpose are not printed: the not-stated pattern (VOCABULARY.md) plus "" for minCount 1.
+# jt: vocabulary as in VOCABULARY.md.
+
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix sssom: <https://w3id.org/sssom/> .
+@prefix jt:    <urn:jt:rule-vocab:> .
+@prefix v:     <urn:jt:var:> .
+@prefix d2d:   <urn:jt:d2d:> .
+@prefix usdm:  <https://w3id.org/cdisc/usdm/v4/> .
+@prefix :      <urn:jt:rules:lzzt:> .
+
+<urn:jt:g:rules> {
+  :E1 a jt:Rule ; jt:seq 5 ;
+      rdfs:label "Instrument named in a criteria sentence with a level row and an objective row -> Endpoint in that Objective" ;
+      jt:match :E_L ; jt:construct :E1_R ;
+      jt:bind [ jt:seq 1 ; jt:var "opos" ; jt:expr "CONCAT(REPLACE(?onum, '\\\\.$', ''), '.', STR(?oord))" ] ;
+      jt:mint [ jt:var v:O ; jt:template "urn:jt:expr/e0006/usdm/Objective_{opos}" ] ,
+              [ jt:var v:E ; jt:template "urn:jt:expr/e0006/usdm/Endpoint_{opos}_{m}" ] ,
+              [ jt:var v:C ; jt:template "urn:jt:expr/e0006/usdm/Code_Endpoint_{opos}_{m}_level" ] ,
+              [ jt:var v:EN ; jt:template "urn:jt:expr/e0006/usdm/ExtensionAttribute_Endpoint_{opos}_{m}_name" ] ,
+              [ jt:var v:EP ; jt:template "urn:jt:expr/e0006/usdm/ExtensionAttribute_Endpoint_{opos}_{m}_purpose" ] .
+  :E2 a jt:Rule ; jt:seq 6 ;
+      rdfs:label "Level Code of each such Endpoint, from the level row of its sentence (code, decode, CT version)" ;
+      jt:match :E2_L ; jt:construct :E2_R ;
+      jt:bind [ jt:seq 1 ; jt:var "opos" ; jt:expr "CONCAT(REPLACE(?onum, '\\\\.$', ''), '.', STR(?oord))" ] ,
+              [ jt:seq 2 ; jt:var "code" ; jt:expr "STRAFTER(STR(?T), 'http://purl.obolibrary.org/obo/NCIT_')" ] ;
+      jt:mint [ jt:var v:C ; jt:template "urn:jt:expr/e0006/usdm/Code_Endpoint_{opos}_{m}_level" ] .
+}
+
+<urn:jt:rules:lzzt:E_L> {
+  v:S a d2d:Sentence .
+  v:XO a owl:Axiom ; sssom:mapping_set <urn:jt:mapping-set:lzzt-endpoint-objective> ;
+      owl:annotatedSource v:S ; owl:annotatedTarget v:OI ; <urn:jt:rule-vocab:subjectMention> "?m"^^jt:var .
+  v:XL a owl:Axiom ; sssom:mapping_set <urn:jt:mapping-set:lzzt-endpointlevel> ; owl:annotatedSource v:S .
+  v:OI a d2d:ListItem ; d2d:inList v:OL ; d2d:order "?oord"^^jt:var .
+  v:OL d2d:inSection v:OS .
+  v:OS d2d:number "?onum"^^jt:var .
+}
+<urn:jt:rules:lzzt:E1_R> {
+  v:O usdm:Objective-endpoints v:E .
+  v:E a usdm:Endpoint ;
+      usdm:SyntaxTemplate-text "?m"^^jt:var ;
+      usdm:SyntaxTemplate-name "" ;
+      usdm:Endpoint-purpose "" ;
+      usdm:Endpoint-level v:C ;
+      usdm:Endpoint-extensionAttributes v:EN , v:EP ;
+      jt:derivedFrom v:S , v:XO , v:XL .
+  v:EN a usdm:ExtensionAttribute ;
+      usdm:ExtensionAttribute-url "https://kerfors.github.io/soa2usdm/not-stated-in-protocol" ;
+      usdm:ExtensionAttribute-valueString "name" ;
+      jt:derivedFrom v:S .
+  v:EP a usdm:ExtensionAttribute ;
+      usdm:ExtensionAttribute-url "https://kerfors.github.io/soa2usdm/not-stated-in-protocol" ;
+      usdm:ExtensionAttribute-valueString "purpose" ;
+      jt:derivedFrom v:S .
+}
+
+<urn:jt:rules:lzzt:E2_L> {
+  v:S a d2d:Sentence .
+  v:XO a owl:Axiom ; sssom:mapping_set <urn:jt:mapping-set:lzzt-endpoint-objective> ;
+      owl:annotatedSource v:S ; owl:annotatedTarget v:OI ; <urn:jt:rule-vocab:subjectMention> "?m"^^jt:var .
+  v:XL a owl:Axiom ; sssom:mapping_set <urn:jt:mapping-set:lzzt-endpointlevel> ; owl:annotatedSource v:S ;
+      owl:annotatedTarget v:T ; sssom:object_label "?dec"^^jt:var .
+  <urn:jt:mapping-set:lzzt-endpointlevel> sssom:object_source_version "?ver"^^jt:var .
+  v:OI a d2d:ListItem ; d2d:inList v:OL ; d2d:order "?oord"^^jt:var .
+  v:OL d2d:inSection v:OS .
+  v:OS d2d:number "?onum"^^jt:var .
+}
+<urn:jt:rules:lzzt:E2_R> {
+  v:C a usdm:Code ;
+      usdm:Code-code "?code"^^jt:var ;
+      usdm:Code-codeSystem "http://www.cdisc.org" ;
+      usdm:Code-codeSystemVersion "?ver"^^jt:var ;
+      usdm:Code-decode "?dec"^^jt:var ;
+      jt:derivedFrom v:S , v:XL .
+}
