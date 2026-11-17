@@ -44,3 +44,5 @@ for r in sorted(py_rows - rule_rows): print("  only in Python:", r)
 for r in sorted(rule_rows - py_rows): print("  only in rules: ", r)
 from collections import Counter
 print("by allocation:", dict(Counter(r[3] for r in rule_rows)))
+
+assert py_rows == rule_rows, f"rows differ: {len(py_rows - rule_rows)} only in Python, {len(rule_rows - py_rows)} only in rules"

@@ -57,3 +57,6 @@ print(f"status: pandas {len(py_status)} | rules {len(rule_status)} | identical {
       f"{dict(Counter(rule_status.values()))}")
 for k in sorted(k for k in py_status if py_status[k] != rule_status.get(k))[:20]:
     print("  status differs:", k, py_status[k], "|", rule_status.get(k))
+
+assert py == rules, f"rows differ: {len(py - rules)} only in join, {len(rules - py)} only in rules"
+assert py_status == rule_status, f"status differs: pandas {len(py_status)} | rules {len(rule_status)} | identical {same}"
