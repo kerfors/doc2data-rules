@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.DS_Store
+tests/*/out/
+tests/*/facts*.trig
+tests/remapcap-q7/inputs/not-redistributed/
+docs/
+register/out/
+Claude outputs/

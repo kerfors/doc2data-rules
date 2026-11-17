@@ -1,0 +1,160 @@
+# d2d — document transcript vocabulary, v0 (draft)
+# Structure and anchors only, no domain meaning. Classes sit under IAO; containment properties under
+# BFO part of. IAO, BFO, FRBR Core, Web Annotation and PROV-O terms are referenced by IRI, not imported.
+# Namespace: urn:jt:d2d: for now; later https://w3id.org/people/kerfors/doc2data/d2d# (see TRANSCRIPT-VOCABULARY.md).
+
+@prefix d2d:     <urn:jt:d2d:> .
+@prefix obo:     <http://purl.obolibrary.org/obo/> .
+@prefix doco:    <http://purl.org/spar/doco/> .
+@prefix oa:      <http://www.w3.org/ns/oa#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<urn:jt:d2d:> a owl:Ontology ;
+    rdfs:label "d2d — document transcript vocabulary" ;
+    owl:versionInfo "0.1.0-draft" ;
+    dcterms:creator <https://orcid.org/0000-0002-1491-0940> ;
+    rdfs:comment "What a document prints and where: structure and anchors, no decisions. Classes are information content entities under IAO (release 2026-03-30); containment is BFO part of (BFO_0000050). Identity from FRBR Core, anchors from Web Annotation, how a transcript was made from PROV-O." .
+
+# ---------------------------------------------------------------- classes: document parts (IAO_0000314)
+
+d2d:Section a owl:Class ; rdfs:subClassOf obo:IAO_0000314 ;
+    rdfs:label "section" ;
+    rdfs:comment "A division of a document under a printed heading, numbered or not. May contain sections." ;
+    skos:closeMatch doco:Section .
+
+d2d:List a owl:Class ; rdfs:subClassOf obo:IAO_0000314 ;
+    rdfs:label "list" ;
+    rdfs:comment "A printed sequence of list items (bulleted or numbered)." ;
+    skos:closeMatch doco:List .
+
+d2d:Row a owl:Class ; rdfs:subClassOf obo:IAO_0000314 ;
+    rdfs:label "table row" ;
+    rdfs:comment "A horizontal arrangement of cells in a table, as printed." .
+
+d2d:RowGroup a owl:Class ; rdfs:subClassOf obo:IAO_0000314 ;
+    rdfs:label "row group" ;
+    rdfs:comment "Rows of a table printed under one spanning label row (a band)." .
+
+d2d:Column a owl:Class ; rdfs:subClassOf obo:IAO_0000314 ;
+    rdfs:label "table column" ;
+    rdfs:comment "A vertical arrangement of cells in a table, as printed." .
+
+d2d:Page a owl:Class ; rdfs:subClassOf obo:IAO_0000314 ;
+    rdfs:label "page" ;
+    rdfs:comment "The content as laid out on one physical page of a Manifestation. An information content entity, not a region of a printed sheet." .
+
+# ---------------------------------------------------------------- classes: textual entities (IAO_0000300)
+
+d2d:Paragraph a owl:Class ; rdfs:subClassOf obo:IAO_0000300 ;
+    rdfs:label "paragraph" ;
+    rdfs:comment "A block of running text printed as one paragraph." ;
+    skos:closeMatch doco:Paragraph .
+
+d2d:Sentence a owl:Class ; rdfs:subClassOf obo:IAO_0000300 ;
+    rdfs:label "sentence" ;
+    rdfs:comment "One sentence of running text, as printed." ;
+    skos:closeMatch doco:Sentence .
+
+d2d:ListItem a owl:Class ; rdfs:subClassOf obo:IAO_0000300 ;
+    rdfs:label "list item" ;
+    rdfs:comment "One item of a list (one bullet or number). A nested list is part of its item." .
+
+d2d:ListLead a owl:Class ; rdfs:subClassOf obo:IAO_0000300 ;
+    rdfs:label "list lead-in" ;
+    rdfs:comment "The text printed before a list that introduces it." .
+
+d2d:LabelledItem a owl:Class ; rdfs:subClassOf obo:IAO_0000300 ;
+    rdfs:label "labelled item" ;
+    rdfs:comment "Text printed as 'label: value'. The label (without the colon) is d2d:label, the value is d2d:text." .
+
+d2d:Cell a owl:Class ; rdfs:subClassOf obo:IAO_0000300 ;
+    rdfs:label "table cell" ;
+    rdfs:comment "The intersection of a row and a column, as bounded by the printed table. May be printed empty." .
+
+# Used directly, not subclassed: obo:IAO_0000306 table, obo:IAO_0000308 figure, obo:IAO_0000325 footnote,
+# obo:IAO_0000304 caption, obo:IAO_0000305 document title, obo:IAO_0000605 abbreviation textual entity.
+
+# ---------------------------------------------------------------- containment (subproperties of BFO part of)
+
+d2d:inSection   a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "in section" .
+d2d:inTable     a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "in table" .
+d2d:inRowGroup  a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "in row group" .
+d2d:inRow       a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "in row" .
+d2d:inColumn    a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "in column" .
+d2d:inCell      a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "in cell" .
+d2d:inList      a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "in list" .
+d2d:inListItem  a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "in list item" ;
+    rdfs:comment "A nested list, or trailing text, that is part of a list item." .
+d2d:onPage      a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "on page" ;
+    rdfs:comment "Repeatable: an element printed across pages is on each of them." .
+d2d:withinSection a owl:ObjectProperty ; rdfs:subPropertyOf obo:BFO_0000050 ; rdfs:label "within section" ;
+    rdfs:comment "The nearest section the element is printed in, stated on every element inside a section, whatever its direct container (list, table, cell). For a direct part of a section it repeats d2d:inSection. Lets rules reach an element by its section without knowing the layout in between." .
+
+# ---------------------------------------------------------------- anchors
+
+d2d:anchor a owl:ObjectProperty ; rdfs:label "anchor" ;
+    rdfs:range oa:SpecificResource ;
+    rdfs:comment "Where the element is printed: an oa:SpecificResource with oa:hasSource the Manifestation and a FragmentSelector (page=N, RFC 3778) refined by a TextQuoteSelector. One per page. Used by verification tools, not by rules." .
+
+# ---------------------------------------------------------------- printed values
+
+d2d:localId   a owl:DatatypeProperty ; rdfs:label "local id" ;
+    rdfs:comment "The producer's id of the element within the Manifestation; the last segment of its IRI." .
+d2d:order     a owl:DatatypeProperty ; rdfs:label "order" ; rdfs:range xsd:integer ;
+    rdfs:comment "Position among the parts of the same container, from 1, in reading order." .
+d2d:number    a owl:DatatypeProperty ; rdfs:label "printed number" ;
+    rdfs:comment "A section or item number as printed, e.g. '6.1'. A string." .
+d2d:heading   a owl:DatatypeProperty ; rdfs:label "heading" ;
+    rdfs:comment "The printed heading of a section, without its number." .
+d2d:label     a owl:DatatypeProperty ; rdfs:label "label" ;
+    rdfs:comment "A printed row or column header, or the label of a labelled item (without the colon)." .
+d2d:text      a owl:DatatypeProperty ; rdfs:label "text" ;
+    rdfs:comment "The element's printed text, under the normalization recorded on the transcript run. Rules read this." .
+d2d:trailingText a owl:DatatypeProperty ; rdfs:label "trailing text" ;
+    rdfs:comment "Text printed after a nested list that completes the item's text." .
+d2d:printedEmpty a owl:DatatypeProperty ; rdfs:label "printed empty" ; rdfs:range xsd:boolean ;
+    rdfs:comment "True for a cell that exists in the printed table but holds no text." .
+d2d:pageIndex a owl:DatatypeProperty ; rdfs:label "page index" ; rdfs:range xsd:integer ;
+    rdfs:comment "Physical page number in the file, from 1. Also the last segment of the page IRI." .
+d2d:pageLabel a owl:DatatypeProperty ; rdfs:label "page label" ;
+    rdfs:comment "The page number as printed on the page (a string; may differ from the index)." .
+d2d:sha256    a owl:DatatypeProperty ; rdfs:label "sha256" ;
+    rdfs:comment "SHA-256 of a file's bytes, 64 lowercase hex characters. Also the last segment of its IRI." .
+d2d:firstPageIndex a owl:DatatypeProperty ; rdfs:label "first page index" ; rdfs:range xsd:integer ;
+    rdfs:comment "On a text-layer file (pdftotext output, one form feed after each page): the physical page of the Manifestation its first page is." .
+
+# ---------------------------------------------------------------- transcript runs (PROV-O)
+
+d2d:textNormalization a owl:ObjectProperty ; rdfs:label "text normalization" ;
+    rdfs:domain prov:Activity ; rdfs:range d2d:TextNormalization ;
+    rdfs:comment "How printed text was normalized in this run. d2d:text, oa:exact and the other printed literals are stored normalized; the verbatim check normalizes the page text the same way." .
+
+d2d:TextNormalization a owl:Class ; rdfs:label "text normalization" ;
+    rdfs:comment "A named rule for turning printed text into stored strings. Each one is implemented in machinery/d2d_check.py; a run naming another one fails the check." .
+
+d2d:whitespaceCollapsed a d2d:TextNormalization ; rdfs:label "whitespace collapsed" ;
+    rdfs:comment "Every run of whitespace (spaces, tabs, line breaks) becomes one space; leading and trailing whitespace is removed. Nothing else changes: no case folding, no hyphen, dash, quote or superscript handling. List markers are not part of any element's text." .
+
+# ---------------------------------------------------------------- register (studies, works, expressions, manifestations)
+
+d2d:registeredId a owl:ObjectProperty ; rdfs:label "registered identifier" ;
+    rdfs:comment "An identifier of a study as a registry records it: a node with d2d:idField (the registry field it comes from), d2d:idValue, and d2d:idType / d2d:idDomain where the registry gives them." .
+d2d:idField  a owl:DatatypeProperty ; rdfs:label "registry field" ;
+    rdfs:comment "The registry record field an identifier was taken from, e.g. ClinicalTrials.gov 'nctId', 'orgStudyIdInfo', 'secondaryIdInfos'." .
+d2d:idValue  a owl:DatatypeProperty ; rdfs:label "identifier value" .
+d2d:idType   a owl:DatatypeProperty ; rdfs:label "identifier type" ;
+    rdfs:comment "The identifier type as the registry states it (e.g. 'EUDRACT_NUMBER', 'OTHER')." .
+d2d:idDomain a owl:DatatypeProperty ; rdfs:label "identifier domain" ;
+    rdfs:comment "Who issued the identifier, as the registry states it." .
+d2d:byteSize a owl:DatatypeProperty ; rdfs:label "byte size" ; rdfs:range xsd:integer ;
+    rdfs:comment "Size of a file in bytes, as the registry lists it; checked against the file of record." .
+
+d2d:transcriber a prov:Role ; rdfs:label "transcriber" ;
+    rdfs:comment "The agent that wrote the transcript (a script, or a person or model working from the page)." .
+d2d:checker a prov:Role ; rdfs:label "checker" ;
+    rdfs:comment "The agent that checked the transcript against the page." .

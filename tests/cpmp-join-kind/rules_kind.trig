@@ -1,0 +1,243 @@
+# CPMP SoA join 'kind' classification as L/R rules — the same decisions as
+# early-clinical-design-research/cpmp-soa-join/cpmp_soa_join.ipynb (cells 1, 10, 11, 13), one rule each.
+# Facts: urn:k:g:facts (transcribed). Mapping data: urn:k:g:crosswalk (the join's activity_crosswalk.csv).
+# jt: vocabulary as in VOCABULARY.md; jt:negative may repeat; jt:filter is a spliced SPARQL expression.
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix jt:   <urn:jt:rule-vocab:> .
+@prefix v:    <urn:jt:var:> .
+@prefix f:    <urn:k:fact-vocab:> .
+@prefix k:    <urn:k:vocab:> .
+@prefix :     <urn:k:rules:> .
+
+<urn:jt:g:rules> {
+  # ---- activity identity, through the crosswalk (mapping data, not rule content)
+  :K1 a jt:Rule ; jt:seq 1 ; rdfs:label "Row key from the crosswalk where use = yes" ;
+      jt:match :K1_L ; jt:construct :K1_R .
+  :K2 a jt:Rule ; jt:seq 2 ; rdfs:label "Row key = name as printed where the crosswalk says use = no" ;
+      jt:match :K2_L ; jt:construct :K2_R .
+
+  # ---- what the master shows
+  :K3 a jt:Rule ; jt:seq 3 ; rdfs:label "Master mark -> master cell (activity key x visit)" ;
+      jt:match :K3_L ; jt:construct :K3_R ;
+      jt:mint [ jt:var v:MC ; jt:template "urn:k:mastercell/{key}/{vis}" ] .
+  :K4 a jt:Rule ; jt:seq 4 ; rdfs:label "Activity key in the master SoA" ;
+      jt:match :K4_L ; jt:construct :K4_R ;
+      jt:mint [ jt:var v:MK ; jt:template "urn:k:masterkey/{key}" ] .
+  :K5 a jt:Rule ; jt:seq 5 ; rdfs:label "Visit in the master SoA" ;
+      jt:match :K5_L ; jt:construct :K5_R ;
+      jt:mint [ jt:var v:MV ; jt:template "urn:k:mastervisit/{vis}" ] .
+  :K6 a jt:Rule ; jt:seq 6 ; rdfs:label "ISA mark -> ISA cell" ;
+      jt:match :K6_L ; jt:construct :K6_R ;
+      jt:mint [ jt:var v:IC ; jt:template "urn:k:isacell/{nct}/{key}/{vis}" ] .
+
+  # ---- cross-layer statements (text patterns of cell 10)
+  :S1 a jt:Rule ; jt:seq 7 ; rdfs:label "ISA statement 'not needed for ED per the CPMP SoA' -> override of the ED cell" ;
+      jt:match :S1_L ; jt:construct :S1_R ;
+      jt:filter "REGEX(?t, 'not needed for ED per the CPMP SoA', 'i')" ;
+      jt:mint [ jt:var v:OC ; jt:template "urn:k:override/{nct}/{key}" ] .
+  :S2 a jt:Rule ; jt:seq 8 ; rdfs:label "Master statement 'included in each ISA' / 'defined in each respective ISA' -> activity delegated" ;
+      jt:match :S2_L ; jt:construct :S2_R ;
+      jt:filter "REGEX(?t, 'included in each ISA|defined in each respective ISA', 'i')" ;
+      jt:mint [ jt:var v:DK ; jt:template "urn:k:delegated/{key}" ] .
+  :S3 a jt:Rule ; jt:seq 9 ; rdfs:label "ISA statement 'in addition to schedule described in', naming the DSA -> addition (master + DSA)" ;
+      jt:match :S3_L ; jt:construct :S3_R ;
+      jt:filter "REGEX(?t, 'in addition to schedule described in', 'i')" ,
+                "REGEX(?t, '(^|[^A-Za-z])DSA([^A-Za-z]|$)')" ;
+      jt:bind [ jt:seq 1 ; jt:var "names" ; jt:expr "'master + DSA'" ] ;
+      jt:mint [ jt:var v:AS ; jt:template "urn:k:addition/{nct}/{key}" ] .
+  :S4 a jt:Rule ; jt:seq 10 ; rdfs:label "ISA statement 'in addition to schedule described in', not naming the DSA -> addition (master only)" ;
+      jt:match :S4_L ; jt:construct :S4_R ;
+      jt:filter "REGEX(?t, 'in addition to schedule described in', 'i')" ,
+                "!REGEX(?t, '(^|[^A-Za-z])DSA([^A-Za-z]|$)')" ;
+      jt:bind [ jt:seq 1 ; jt:var "names" ; jt:expr "'master only'" ] ;
+      jt:mint [ jt:var v:AS ; jt:template "urn:k:addition/{nct}/{key}" ] .
+
+  # ---- cell kinds (table of cell 1), per ISA; the override wins (cell 13)
+  :C1 a jt:Rule ; jt:seq 11 ; rdfs:label "inherited: master marks the cell, the ISA does not" ;
+      jt:match :C1_L ; jt:construct :C_R_inherited ; jt:negative :N_isacell , :N_override ;
+      jt:mint [ jt:var v:CELL ; jt:template "urn:k:cell/{nct}/{key}/{vis}" ] .
+  :C2 a jt:Rule ; jt:seq 12 ; rdfs:label "restated: both mark the cell" ;
+      jt:match :C2_L ; jt:construct :C_R_restated ; jt:negative :N_override ;
+      jt:mint [ jt:var v:CELL ; jt:template "urn:k:cell/{nct}/{key}/{vis}" ] .
+  :C3 a jt:Rule ; jt:seq 13 ; rdfs:label "added: only the ISA marks it; activity and visit are in the master SoA" ;
+      jt:match :C3_L ; jt:construct :C_R_added ; jt:negative :N_mastercell , :N_override ;
+      jt:mint [ jt:var v:CELL ; jt:template "urn:k:cell/{nct}/{key}/{vis}" ] .
+  :C4 a jt:Rule ; jt:seq 14 ; rdfs:label "extended: only the ISA marks it; activity in the master SoA, visit not" ;
+      jt:match :C4_L ; jt:construct :C_R_extended ; jt:negative :N_mastercell , :N_mastervisit , :N_override ;
+      jt:mint [ jt:var v:CELL ; jt:template "urn:k:cell/{nct}/{key}/{vis}" ] .
+  :C5 a jt:Rule ; jt:seq 15 ; rdfs:label "isa_only: only the ISA marks it; activity not in the master SoA, visit is" ;
+      jt:match :C5_L ; jt:construct :C_R_isa_only ; jt:negative :N_mastercell , :N_masterkey , :N_override ;
+      jt:mint [ jt:var v:CELL ; jt:template "urn:k:cell/{nct}/{key}/{vis}" ] .
+  :C6 a jt:Rule ; jt:seq 16 ; rdfs:label "isa_only_extended: only the ISA marks it; neither activity nor visit in the master SoA" ;
+      jt:match :C6_L ; jt:construct :C_R_isa_only_extended ;
+      jt:negative :N_mastercell , :N_masterkey , :N_mastervisit , :N_override ;
+      jt:mint [ jt:var v:CELL ; jt:template "urn:k:cell/{nct}/{key}/{vis}" ] .
+  :C7 a jt:Rule ; jt:seq 17 ; rdfs:label "override_ed: the ISA overrides the ED cell of the activity (also where neither layer marks it)" ;
+      jt:match :C7_L ; jt:construct :C_R_override ;
+      jt:mint [ jt:var v:CELL ; jt:template "urn:k:cell/{nct}/{key}/{vis}" ] .
+
+  # ---- flags
+  :F1 a jt:Rule ; jt:seq 18 ; rdfs:label "Cell of an activity the master delegates to the ISA" ;
+      jt:match :F1_L ; jt:construct :F1_R .
+  :F2 a jt:Rule ; jt:seq 19 ; rdfs:label "ISA-marked cell of an activity with a stated addition" ;
+      jt:match :F2_L ; jt:construct :F2_R .
+
+  # ---- status labels from mapping status: a crosswalk entry still 'proposed' is an analyst reading
+  :ST1 a jt:Rule ; jt:seq 20 ;
+      rdfs:label "Cell whose key came, in this ISA, through a crosswalk entry still proposed: rule-derived from analyst readings" ;
+      jt:match :ST1_L ; jt:construct :ST_R_analyst .
+  :ST2 a jt:Rule ; jt:seq 21 ;
+      rdfs:label "Cell whose key came, in the master, through a crosswalk entry still proposed: rule-derived from analyst readings" ;
+      jt:match :ST2_L ; jt:construct :ST_R_analyst .
+  :ST3 a jt:Rule ; jt:seq 22 ;
+      rdfs:label "Any other cell: rule-derived (every key it rests on is identical as printed or decided)" ;
+      jt:match :ST3_L ; jt:construct :ST_R_rule ; jt:negative :N_analyst .
+}
+
+# ---------- K: identity and layer facts
+<urn:k:rules:K1_L> {
+  v:R a f:ActivityRow ; f:name "?n"^^jt:var .
+  v:X a f:CrosswalkEntry ; f:nameAsPrinted "?n"^^jt:var ; f:activityKey "?key"^^jt:var ; f:use "yes" .
+}
+<urn:k:rules:K1_R> { v:R k:key "?key"^^jt:var ; jt:derivedFrom v:X . }
+<urn:k:rules:K2_L> {
+  v:R a f:ActivityRow ; f:name "?n"^^jt:var .
+  v:X a f:CrosswalkEntry ; f:nameAsPrinted "?n"^^jt:var ; f:use "no" .
+}
+<urn:k:rules:K2_R> { v:R k:key "?n"^^jt:var ; jt:derivedFrom v:X . }
+
+<urn:k:rules:K3_L> {
+  v:M a f:Mark ; f:row v:R ; f:visit "?vis"^^jt:var .
+  v:R f:inDoc v:Dm ; k:key "?key"^^jt:var .
+  v:Dm f:layer "master" .
+}
+<urn:k:rules:K3_R> { v:MC a k:MasterCell ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var ; jt:derivedFrom v:M . }
+
+<urn:k:rules:K4_L> {
+  v:R a f:ActivityRow ; f:inDoc v:Dm ; k:key "?key"^^jt:var .
+  v:Dm f:layer "master" .
+}
+<urn:k:rules:K4_R> { v:MK a k:MasterKey ; k:key "?key"^^jt:var . }
+
+<urn:k:rules:K5_L> {
+  v:C a f:VisitColumn ; f:inDoc v:Dm ; f:visit "?vis"^^jt:var .
+  v:Dm f:layer "master" .
+}
+<urn:k:rules:K5_R> { v:MV a k:MasterVisit ; k:visit "?vis"^^jt:var . }
+
+<urn:k:rules:K6_L> {
+  v:M a f:Mark ; f:row v:R ; f:visit "?vis"^^jt:var .
+  v:R f:inDoc v:D ; k:key "?key"^^jt:var .
+  v:D f:layer "ISA" ; f:nct "?nct"^^jt:var .
+}
+<urn:k:rules:K6_R> { v:IC a k:IsaCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var ; jt:derivedFrom v:M . }
+
+# ---------- S: statements
+<urn:k:rules:S1_L> {
+  v:A a f:Annotation ; f:inDoc v:D ; f:text "?t"^^jt:var ; f:refersToRow v:R .
+  v:R k:key "?key"^^jt:var .
+  v:D f:layer "ISA" ; f:nct "?nct"^^jt:var .
+}
+<urn:k:rules:S1_R> {
+  v:OC a k:OverrideCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "ED" ; k:evidenceText "?t"^^jt:var ;
+       jt:derivedFrom v:A .
+}
+<urn:k:rules:S2_L> {
+  v:A a f:Annotation ; f:inDoc v:D ; f:text "?t"^^jt:var ; f:refersToRow v:R .
+  v:R k:key "?key"^^jt:var .
+  v:D f:layer "master" .
+}
+<urn:k:rules:S2_R> { v:DK a k:DelegatedKey ; k:key "?key"^^jt:var ; jt:derivedFrom v:A . }
+<urn:k:rules:S3_L> {
+  v:A a f:Annotation ; f:inDoc v:D ; f:text "?t"^^jt:var ; f:refersToRow v:R .
+  v:R k:key "?key"^^jt:var .
+  v:D f:layer "ISA" ; f:nct "?nct"^^jt:var .
+}
+<urn:k:rules:S3_R> { v:AS a k:AdditionStated ; k:doc v:D ; k:key "?key"^^jt:var ; k:names "?names"^^jt:var ; jt:derivedFrom v:A . }
+<urn:k:rules:S4_L> {
+  v:A a f:Annotation ; f:inDoc v:D ; f:text "?t"^^jt:var ; f:refersToRow v:R .
+  v:R k:key "?key"^^jt:var .
+  v:D f:layer "ISA" ; f:nct "?nct"^^jt:var .
+}
+<urn:k:rules:S4_R> { v:AS a k:AdditionStated ; k:doc v:D ; k:key "?key"^^jt:var ; k:names "?names"^^jt:var ; jt:derivedFrom v:A . }
+
+# ---------- C: cell kinds
+<urn:k:rules:C1_L> {
+  v:D a f:Document ; f:layer "ISA" ; f:nct "?nct"^^jt:var .
+  v:MC a k:MasterCell ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+}
+<urn:k:rules:C2_L> {
+  v:D a f:Document ; f:layer "ISA" ; f:nct "?nct"^^jt:var .
+  v:MC a k:MasterCell ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+  v:IC a k:IsaCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+}
+<urn:k:rules:C3_L> {
+  v:D f:nct "?nct"^^jt:var .
+  v:IC a k:IsaCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+  v:MK a k:MasterKey ; k:key "?key"^^jt:var .
+  v:MV a k:MasterVisit ; k:visit "?vis"^^jt:var .
+}
+<urn:k:rules:C4_L> {
+  v:D f:nct "?nct"^^jt:var .
+  v:IC a k:IsaCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+  v:MK a k:MasterKey ; k:key "?key"^^jt:var .
+}
+<urn:k:rules:C5_L> {
+  v:D f:nct "?nct"^^jt:var .
+  v:IC a k:IsaCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+  v:MV a k:MasterVisit ; k:visit "?vis"^^jt:var .
+}
+<urn:k:rules:C6_L> {
+  v:D f:nct "?nct"^^jt:var .
+  v:IC a k:IsaCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+}
+<urn:k:rules:C7_L> {
+  v:D f:nct "?nct"^^jt:var .
+  v:OC a k:OverrideCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+}
+
+<urn:k:rules:N_isacell>    { v:IC2 a k:IsaCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var . }
+<urn:k:rules:N_mastercell> { v:MC2 a k:MasterCell ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var . }
+<urn:k:rules:N_masterkey>  { v:MK2 a k:MasterKey ; k:key "?key"^^jt:var . }
+<urn:k:rules:N_mastervisit>{ v:MV2 a k:MasterVisit ; k:visit "?vis"^^jt:var . }
+<urn:k:rules:N_override>   { v:OC2 a k:OverrideCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var . }
+
+<urn:k:rules:C_R_inherited>         { v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var ; k:kind "inherited" ; jt:derivedFrom v:MC . }
+<urn:k:rules:C_R_restated>          { v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var ; k:kind "restated" ; jt:derivedFrom v:MC , v:IC . }
+<urn:k:rules:C_R_added>             { v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var ; k:kind "added" ; jt:derivedFrom v:IC . }
+<urn:k:rules:C_R_extended>          { v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var ; k:kind "extended" ; jt:derivedFrom v:IC . }
+<urn:k:rules:C_R_isa_only>          { v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var ; k:kind "isa_only" ; jt:derivedFrom v:IC . }
+<urn:k:rules:C_R_isa_only_extended> { v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var ; k:kind "isa_only_extended" ; jt:derivedFrom v:IC . }
+<urn:k:rules:C_R_override>          { v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var ; k:kind "override_ed" ; jt:derivedFrom v:OC . }
+
+# ---------- F: flags
+<urn:k:rules:F1_L> {
+  v:CELL a k:Cell ; k:key "?key"^^jt:var .
+  v:DK a k:DelegatedKey ; k:key "?key"^^jt:var .
+}
+<urn:k:rules:F1_R> { v:CELL k:delegatedByMaster true ; jt:derivedFrom v:DK . }
+<urn:k:rules:F2_L> {
+  v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+  v:IC a k:IsaCell ; k:doc v:D ; k:key "?key"^^jt:var ; k:visit "?vis"^^jt:var .
+  v:AS a k:AdditionStated ; k:doc v:D ; k:key "?key"^^jt:var ; k:names "?names"^^jt:var .
+}
+<urn:k:rules:F2_R> { v:CELL k:additionStated "?names"^^jt:var ; jt:derivedFrom v:AS . }
+
+# ---------- ST: status labels (read the provenance of the row keys, written by K1/K2)
+<urn:k:rules:ST1_L> {
+  v:CELL a k:Cell ; k:doc v:D ; k:key "?key"^^jt:var .
+  v:R a f:ActivityRow ; f:inDoc v:D ; k:key "?key"^^jt:var ; jt:derivedFrom v:X .
+  v:X a f:CrosswalkEntry ; f:status "proposed" .
+}
+<urn:k:rules:ST2_L> {
+  v:CELL a k:Cell ; k:key "?key"^^jt:var .
+  v:R a f:ActivityRow ; f:inDoc v:Dm ; k:key "?key"^^jt:var ; jt:derivedFrom v:X .
+  v:Dm f:layer "master" .
+  v:X a f:CrosswalkEntry ; f:status "proposed" .
+}
+<urn:k:rules:ST3_L>      { v:CELL a k:Cell . }
+<urn:k:rules:N_analyst>  { v:CELL k:status "rule-derived from analyst readings" . }
+<urn:k:rules:ST_R_analyst> { v:CELL k:status "rule-derived from analyst readings" ; jt:derivedFrom v:X . }
+<urn:k:rules:ST_R_rule>    { v:CELL k:status "rule-derived" . }

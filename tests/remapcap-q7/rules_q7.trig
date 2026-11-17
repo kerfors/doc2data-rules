@@ -1,0 +1,236 @@
+# Q7 (REMAP-CAP) as L/R rules: which DSA statements are affected when the Core Protocol changes?
+# Same decisions as early-clinical-design-research remapcap-design-modules scripts 07 (T-target, T-topic,
+# T-binding) and 08 (V-current, V-transition), read at 8c374cc. The "changed in 4.1" flag is NOT a rule:
+# it comes from running these rules twice (Core 4.0 only; Core 4.0 + 4.1) and comparing the runs (check.py).
+# Mapping data the rules join to: urn:jt:g:topic-rules (mapping.trig, from topic_rules.csv) and
+# urn:jt:g:transition (transition.trig). jt: vocabulary as in ../../VOCABULARY.md.
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix jt:   <urn:jt:rule-vocab:> .
+@prefix v:    <urn:jt:var:> .
+@prefix f:    <urn:q7:fact-vocab:> .
+@prefix m:    <urn:q7:map-vocab:> .
+@prefix rc:   <urn:q7:vocab:> .
+@prefix :     <urn:q7:rules:> .
+
+<urn:jt:g:rules> {
+  # --- identity and versions -------------------------------------------------------------------
+  :I1 a jt:Rule ; jt:seq 1 ;
+      rdfs:label "A section in any version of a document is an expression of the version-independent section with the same layer and number" ;
+      jt:match :I1_L ; jt:construct :I1_R ;
+      jt:mint [ jt:var v:W ; jt:template "urn:q7:sec:{layer}/{n}" ] .
+
+  :D0 a jt:Rule ; jt:seq 2 ;
+      rdfs:label "A later-dated document with the same header name supersedes an earlier one (V-date: header dates)" ;
+      jt:match :D0_L ; jt:construct :D0_R ; jt:filter "?db > ?da" .
+
+  :D1 a jt:Rule ; jt:seq 3 ;
+      rdfs:label "A document no other document supersedes is the version in force (V-current)" ;
+      jt:match :D1_L ; jt:construct :D1_R ; jt:negative :D1_superseded .
+
+  # --- T-target: what the statement points at ----------------------------------------------------
+  :TT1 a jt:Rule ; jt:seq 10 ;
+      rdfs:label "Statement pointing at the Statistical Analysis Appendix: out of scope" ;
+      jt:match :TT1_L ; jt:construct :TT1_R ; jt:filter "?t = 'SAA'" ;
+      jt:mint [ jt:var v:R ; jt:template "urn:q7:reading/{sid}" ] .
+
+  :TT2 a jt:Rule ; jt:seq 11 ;
+      rdfs:label "'core protocol documents' (any case, with or without 'relevant') points at the document set (decision 6)" ;
+      jt:match :TT2_L ; jt:construct :TT2_R ;
+      jt:filter "?t != 'SAA'" , "REGEX(LCASE(?s), 'core protocol documents?')" ;
+      jt:mint [ jt:var v:R ; jt:template "urn:q7:reading/{sid}" ] .
+
+  :TT3 a jt:Rule ; jt:seq 12 ;
+      rdfs:label "Otherwise the statement points at the Core Protocol document" ;
+      jt:match :TT3_L ; jt:construct :TT3_R ;
+      jt:filter "?t != 'SAA'" , "!REGEX(LCASE(?s), 'core protocol documents?')" ;
+      jt:mint [ jt:var v:R ; jt:template "urn:q7:reading/{sid}" ] .
+
+  # --- T-binding ---------------------------------------------------------------------------------
+  :TB1 a jt:Rule ; jt:seq 13 ;
+      rdfs:label "A version-scoped statement that names 'the current version' is bound to the current version on the study website" ;
+      jt:match :TB_L ; jt:construct :TB1_R ;
+      jt:filter "?rel = 'version_scoped' && CONTAINS(LCASE(?s), 'current version')" ;
+      jt:mint [ jt:var v:R ; jt:template "urn:q7:reading/{sid}" ] .
+
+  :TB2 a jt:Rule ; jt:seq 14 ;
+      rdfs:label "Any other statement on the Core or PANDA names no version: unversioned" ;
+      jt:match :TB_L ; jt:construct :TB2_R ;
+      jt:filter "?t != 'SAA' && !(?rel = 'version_scoped' && CONTAINS(LCASE(?s), 'current version'))" ;
+      jt:mint [ jt:var v:R ; jt:template "urn:q7:reading/{sid}" ] .
+
+  # --- T-topic: which section the statement resolves to ------------------------------------------
+  :TM1 a jt:Rule ; jt:seq 20 ;
+      rdfs:label "A topic rule whose pattern occurs in the statement (case-insensitive) matches it; every match is logged" ;
+      jt:match :TM1_L ; jt:construct :TM1_R ;
+      jt:filter "REGEX(LCASE(?s), LCASE(?p))" ;
+      jt:mint [ jt:var v:M ; jt:template "urn:q7:match/{sid}/{o}" ] ,
+              [ jt:var v:R ; jt:template "urn:q7:reading/{sid}" ] .
+
+  :TM2 a jt:Rule ; jt:seq 21 ;
+      rdfs:label "A match is shadowed by a match of the same statement with a lower topic-rule order" ;
+      jt:match :TM2_L ; jt:construct :TM2_R ; jt:filter "?o2 < ?o1" .
+
+  :TR1 a jt:Rule ; jt:seq 22 ;
+      rdfs:label "First match wins: an unshadowed match resolves a refers_to statement on Core or PANDA to the topic rule's target sections" ;
+      jt:match :TR1_L ; jt:construct :TR1_R ; jt:negative :TR1_shadowed ;
+      jt:filter "?t != 'SAA'" , "?rel != 'version_scoped'" ;
+      jt:mint [ jt:var v:R ; jt:template "urn:q7:reading/{sid}" ] .
+
+  :TU1 a jt:Rule ; jt:seq 23 ;
+      rdfs:label "A version-scoped statement names the current version, not a section: not resolved" ;
+      jt:match :TU_L ; jt:construct :TU1_R ;
+      jt:filter "?t != 'SAA'" , "?rel = 'version_scoped'" ;
+      jt:mint [ jt:var v:R ; jt:template "urn:q7:reading/{sid}" ] .
+
+  :TU2 a jt:Rule ; jt:seq 24 ;
+      rdfs:label "No topic rule matches: unresolved, not guessed" ;
+      jt:match :TU_L ; jt:construct :TU2_R ; jt:negative :TU2_matched ;
+      jt:filter "?t != 'SAA'" , "?rel != 'version_scoped'" ;
+      jt:mint [ jt:var v:R ; jt:template "urn:q7:reading/{sid}" ] .
+
+  # --- version binding ---------------------------------------------------------------------------
+  :VC1 a jt:Rule ; jt:seq 30 ;
+      rdfs:label "V-current: an unversioned resolution resolves to the section's expression in the version in force" ;
+      jt:match :VC1_L ; jt:construct :VC1_R .
+
+  :VT1 a jt:Rule ; jt:seq 31 ;
+      rdfs:label "V-transition: if the Core in force contains the transition sentence (7.6.2; the transcript's line-end 'pre- specified' joined), a statement of a DSA dated before it that resolves to an endpoint section also resolves to that section in the version it directly supersedes" ;
+      jt:match :VT1_L ; jt:construct :VT1_R ; jt:negative :VT1_notDirect ;
+      jt:filter "?dd < ?dc" , "CONTAINS(REPLACE(?txt, 'pre- specified', 'pre-specified'), ?sent)" .
+}
+
+<urn:q7:rules:I1_L> {
+  v:E a f:Section ; f:doc v:D ; f:number "?n"^^jt:var .
+  v:D f:layer "?layer"^^jt:var .
+}
+<urn:q7:rules:I1_R> {
+  v:W a rc:Section ; rc:layer "?layer"^^jt:var ; rc:number "?n"^^jt:var .
+  v:E rc:expressionOf v:W .
+}
+
+<urn:q7:rules:D0_L> {
+  v:A a f:Document ; f:headerName "?name"^^jt:var ; f:date "?da"^^jt:var .
+  v:B a f:Document ; f:headerName "?name"^^jt:var ; f:date "?db"^^jt:var .
+}
+<urn:q7:rules:D0_R> {
+  v:A rc:supersededBy v:B .
+}
+
+<urn:q7:rules:D1_L> {
+  v:D a f:Document .
+}
+<urn:q7:rules:D1_superseded> {
+  v:D rc:supersededBy v:X .
+}
+<urn:q7:rules:D1_R> {
+  v:D rc:inForce true .
+}
+
+<urn:q7:rules:TT1_L> {
+  v:S a f:Statement ; f:id "?sid"^^jt:var ; f:target "?t"^^jt:var .
+}
+<urn:q7:rules:TT1_R> {
+  v:R a rc:Reading ; rc:statement v:S ;
+      rc:targetPhrase "Statistical Analysis Appendix" ; rc:ruleSource "out of scope (SAA not in scope)" ;
+      jt:derivedFrom v:S .
+}
+
+<urn:q7:rules:TT2_L> {
+  v:S a f:Statement ; f:id "?sid"^^jt:var ; f:target "?t"^^jt:var ; f:sentence "?s"^^jt:var .
+}
+<urn:q7:rules:TT2_R> {
+  v:R a rc:Reading ; rc:statement v:S ; rc:targetPhrase "document set: core protocol documents" ;
+      jt:derivedFrom v:S .
+}
+
+<urn:q7:rules:TT3_L> {
+  v:S a f:Statement ; f:id "?sid"^^jt:var ; f:target "?t"^^jt:var ; f:sentence "?s"^^jt:var .
+}
+<urn:q7:rules:TT3_R> {
+  v:R a rc:Reading ; rc:statement v:S ; rc:targetPhrase "document: Core Protocol" ;
+      jt:derivedFrom v:S .
+}
+
+<urn:q7:rules:TB_L> {
+  v:S a f:Statement ; f:id "?sid"^^jt:var ; f:target "?t"^^jt:var ; f:relation "?rel"^^jt:var ;
+      f:sentence "?s"^^jt:var .
+}
+<urn:q7:rules:TB1_R> {
+  v:R rc:binding "current (study website)" .
+}
+<urn:q7:rules:TB2_R> {
+  v:R rc:binding "unversioned" .
+}
+
+<urn:q7:rules:TM1_L> {
+  v:S a f:Statement ; f:id "?sid"^^jt:var ; f:sentence "?s"^^jt:var .
+  v:T a m:TopicRule ; m:order "?o"^^jt:var ; m:pattern "?p"^^jt:var .
+}
+<urn:q7:rules:TM1_R> {
+  v:M a rc:TopicMatch ; rc:statement v:S ; rc:topicRule v:T ; rc:order "?o"^^jt:var .
+  v:R rc:matchingRule "?o"^^jt:var .
+}
+
+<urn:q7:rules:TM2_L> {
+  v:M1 a rc:TopicMatch ; rc:statement v:S ; rc:order "?o1"^^jt:var .
+  v:M2 a rc:TopicMatch ; rc:statement v:S ; rc:order "?o2"^^jt:var .
+}
+<urn:q7:rules:TM2_R> {
+  v:M1 rc:shadowedBy v:M2 .
+}
+
+<urn:q7:rules:TR1_L> {
+  v:S a f:Statement ; f:id "?sid"^^jt:var ; f:target "?t"^^jt:var ; f:relation "?rel"^^jt:var .
+  v:M a rc:TopicMatch ; rc:statement v:S ; rc:topicRule v:T .
+  v:T m:order "?o"^^jt:var ; m:source "?src"^^jt:var ; m:target v:W .
+}
+<urn:q7:rules:TR1_shadowed> {
+  v:M rc:shadowedBy v:X .
+}
+<urn:q7:rules:TR1_R> {
+  v:R rc:resolvesTo v:W ; rc:rule "?o"^^jt:var ; rc:ruleSource "?src"^^jt:var ;
+      jt:derivedFrom v:S , v:T .
+}
+
+<urn:q7:rules:TU_L> {
+  v:S a f:Statement ; f:id "?sid"^^jt:var ; f:target "?t"^^jt:var ; f:relation "?rel"^^jt:var .
+}
+<urn:q7:rules:TU1_R> {
+  v:R rc:ruleSource "version_scoped: names the current version, no section" .
+}
+<urn:q7:rules:TU2_matched> {
+  v:M a rc:TopicMatch ; rc:statement v:S .
+}
+<urn:q7:rules:TU2_R> {
+  v:R rc:ruleSource "unresolved: no topic rule matches" .
+}
+
+<urn:q7:rules:VC1_L> {
+  v:R rc:resolvesTo v:W .
+  v:E rc:expressionOf v:W ; f:doc v:D .
+  v:D rc:inForce true .
+}
+<urn:q7:rules:VC1_R> {
+  v:R rc:resolvesToExpression v:E ; jt:derivedFrom v:E .
+}
+
+<urn:q7:rules:VT1_L> {
+  v:R rc:statement v:S ; rc:resolvesTo v:W .
+  v:S f:doc v:DD .
+  v:DD f:date "?dd"^^jt:var .
+  v:X a m:TransitionReading ; m:sentence "?sent"^^jt:var ; m:inSection v:WS ; m:endpointSection v:W .
+  v:ES rc:expressionOf v:WS ; f:doc v:C ; f:text "?txt"^^jt:var .
+  v:C rc:inForce true ; f:date "?dc"^^jt:var .
+  v:P rc:supersededBy v:C .
+  v:EP rc:expressionOf v:W ; f:doc v:P .
+}
+<urn:q7:rules:VT1_notDirect> {
+  v:P rc:supersededBy v:Q .
+  v:Q rc:supersededBy v:C .
+}
+<urn:q7:rules:VT1_R> {
+  v:R rc:additionallyResolvesToExpression v:EP ; jt:derivedFrom v:EP , v:ES , v:X .
+}

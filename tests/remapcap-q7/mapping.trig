@@ -1,0 +1,122 @@
+@prefix ns1: <urn:q7:map-vocab:> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:jt:g:topic-rules> {
+    <urn:q7:map:topic-rule/1> a ns1:TopicRule ;
+        ns1:order 1 ;
+        ns1:pattern "borrow" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 10.2)" ;
+        ns1:target <urn:q7:sec:CORE/7.8.3> .
+
+    <urn:q7:map:topic-rule/10> a ns1:TopicRule ;
+        ns1:order 10 ;
+        ns1:pattern "primary endpoint|primary outcome" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 7 and 8.5.1)" ;
+        ns1:target <urn:q7:sec:CORE/7.6.1> .
+
+    <urn:q7:map:topic-rule/11> a ns1:TopicRule ;
+        ns1:order 11 ;
+        ns1:pattern "discontinuation of participation" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 9.3)" ;
+        ns1:target <urn:q7:sec:CORE/8.6> .
+
+    <urn:q7:map:topic-rule/12> a ns1:TopicRule ;
+        ns1:order 12 ;
+        ns1:pattern "DSMB" ;
+        ns1:source "title rule; accepted by Kerstin 2026-10-25" ;
+        ns1:target <urn:q7:sec:CORE/8.11> ;
+        ns1:titleTerm "Data safety and monitoring board" .
+
+    <urn:q7:map:topic-rule/13> a ns1:TopicRule ;
+        ns1:order 13 ;
+        ns1:pattern "Funding" ;
+        ns1:source "title rule; accepted by Kerstin 2026-10-25" ;
+        ns1:target <urn:q7:sec:CORE/2.5> ;
+        ns1:titleTerm "Funding" .
+
+    <urn:q7:map:topic-rule/14> a ns1:TopicRule ;
+        ns1:order 14 ;
+        ns1:pattern "SAEs should be reported" ;
+        ns1:source "title rule; accepted by Kerstin 2026-10-25" ;
+        ns1:target <urn:q7:sec:CORE/8.12.3> ;
+        ns1:titleTerm "Serious Adverse Eve" .
+
+    <urn:q7:map:topic-rule/15> a ns1:TopicRule ;
+        ns1:order 15 ;
+        ns1:pattern "severe state" ;
+        ns1:source "nine-DSA run; accepted by Kerstin 2026-10-26 (END_DSA and IIM_DSA 8.1.2)" ;
+        ns1:target <urn:q7:sec:PANDA/4.3> ;
+        ns1:titleTerm "Illness severity" .
+
+    <urn:q7:map:topic-rule/16> a ns1:TopicRule ;
+        ns1:order 16 ;
+        ns1:pattern "immediate reveal|deferred reveal" ;
+        ns1:source "nine-DSA run; accepted by Kerstin 2026-10-26 (CS/IG/END/IIM 10.4; Core 7.8.3 defines both terms)" ;
+        ns1:target <urn:q7:sec:CORE/7.8.3> .
+
+    <urn:q7:map:topic-rule/17> a ns1:TopicRule ;
+        ns1:order 17 ;
+        ns1:pattern "statistical triggers and platform conclusions" ;
+        ns1:source "nine-DSA run; accepted by Kerstin 2026-10-26 (MV_DSA 10.3.1)" ;
+        ns1:target <urn:q7:sec:CORE/7.8.6>,
+            <urn:q7:sec:CORE/7.8.7> ;
+        ns1:titleTerm "Statistical Trigger" .
+
+    <urn:q7:map:topic-rule/18> a ns1:TopicRule ;
+        ns1:order 18 ;
+        ns1:pattern "sae\\)? as defined|adverse events? as defined" ;
+        ns1:source "nine-DSA run; accepted by Kerstin 2026-10-26 (8.5.2 SAE pointers; MD_DSA 9.2.1)" ;
+        ns1:target <urn:q7:sec:CORE/8.12.2> ;
+        ns1:titleTerm "Definitions" .
+
+    <urn:q7:map:topic-rule/2> a ns1:TopicRule ;
+        ns1:order 2 ;
+        ns1:pattern "cap on the maximum or minimum proportion" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 10.3)" ;
+        ns1:target <urn:q7:sec:CORE/7.8.7> .
+
+    <urn:q7:map:topic-rule/3> a ns1:TopicRule ;
+        ns1:order 3 ;
+        ns1:pattern "trigger for futility|futility thresholds" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 10.8)" ;
+        ns1:target <urn:q7:sec:CORE/7.8.6> .
+
+    <urn:q7:map:topic-rule/4> a ns1:TopicRule ;
+        ns1:order 4 ;
+        ns1:pattern "threshold probability for statistical triggers" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 10.7)" ;
+        ns1:target <urn:q7:sec:CORE/7.8.6> .
+
+    <urn:q7:map:topic-rule/5> a ns1:TopicRule ;
+        ns1:order 5 ;
+        ns1:pattern "stopping rules" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 10.1)" ;
+        ns1:target <urn:q7:sec:CORE/7.8.6>,
+            <urn:q7:sec:CORE/7.8.7> .
+
+    <urn:q7:map:topic-rule/6> a ns1:TopicRule ;
+        ns1:order 6 ;
+        ns1:pattern "platform-level inclusion" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 8.2)" ;
+        ns1:target <urn:q7:sec:CORE/7.4.1>,
+            <urn:q7:sec:CORE/7.4.2> .
+
+    <urn:q7:map:topic-rule/7> a ns1:TopicRule ;
+        ns1:order 7 ;
+        ns1:pattern "Age Strat" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 8.1.1)" ;
+        ns1:target <urn:q7:sec:PANDA/2> .
+
+    <urn:q7:map:topic-rule/8> a ns1:TopicRule ;
+        ns1:order 8 ;
+        ns1:pattern "States are defined|Illness Severity State" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 8.1.2)" ;
+        ns1:target <urn:q7:sec:PANDA/4.3> .
+
+    <urn:q7:map:topic-rule/9> a ns1:TopicRule ;
+        ns1:order 9 ;
+        ns1:pattern "secondary endpoints" ;
+        ns1:source "agreed 2026-10-24 (inherited_from_core.csv CS_DSA 8.5.2)" ;
+        ns1:target <urn:q7:sec:CORE/7.6.2> .
+}
+

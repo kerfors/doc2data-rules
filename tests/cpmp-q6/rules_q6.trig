@@ -1,0 +1,118 @@
+# Q6 (CPMP) as L/R rules: which defaults does an ISA take, override or stay silent on?
+# Same decisions as cpmp-design-modules/scripts/01_build_modules.py (schedule part), one rule each,
+# plus D4/D5 which separate taking a default explicitly (the ISA marks the cell) from silently.
+# jt: vocabulary as in VOCABULARY.md; jt:negative may repeat (each a FILTER NOT EXISTS).
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix jt:   <urn:jt:rule-vocab:> .
+@prefix v:    <urn:jt:var:> .
+@prefix f:    <urn:q6:fact-vocab:> .
+@prefix q6:   <urn:q6:vocab:> .
+@prefix :     <urn:q6:rules:> .
+
+<urn:jt:g:rules> {
+  :D1 a jt:Rule ; jt:seq 1 ; q6:status "rule-derived" ;
+      rdfs:label "A master ED cell that an ISA override statement names is a master default (the master never calls it one)" ;
+      jt:match :D1_L ; jt:construct :D1_R .
+
+  :D2 a jt:Rule ; jt:seq 2 ; q6:status "document fact" ;
+      rdfs:label "Override statement on a master default: the ISA overrides that cell" ;
+      jt:match :D2_L ; jt:construct :D2_R ;
+      jt:mint [ jt:var v:A ; jt:template "urn:q6:alloc:{isa}/{ck}" ] .
+
+  :D3 a jt:Rule ; jt:seq 3 ; q6:status "document fact" ;
+      rdfs:label "Override statement on an activity the master SoA does not have: it points at the ISA's disease-state design" ;
+      jt:match :D3_L ; jt:construct :D3_R ; jt:negative :D3_inMaster ;
+      jt:mint [ jt:var v:A ; jt:template "urn:q6:alloc:{isa}/beyond/{a}" ] .
+
+  :D4 a jt:Rule ; jt:seq 4 ; q6:status "rule-derived" ;
+      rdfs:label "Documented ISA, master default, the ISA marks the cell itself and does not override: takes it, restated" ;
+      jt:match :D4_L ; jt:construct :D4_R ; jt:negative :D4_overridden ;
+      jt:mint [ jt:var v:A ; jt:template "urn:q6:alloc:{isa}/{ck}" ] .
+
+  :D5 a jt:Rule ; jt:seq 5 ; q6:status "rule-derived" ;
+      rdfs:label "Documented ISA, master default, the ISA neither marks nor overrides the cell: takes it silently" ;
+      jt:match :D5_L ; jt:construct :D5_R ; jt:negative :D5_marked , :D5_overridden ;
+      jt:mint [ jt:var v:A ; jt:template "urn:q6:alloc:{isa}/{ck}" ] .
+
+  :D6 a jt:Rule ; jt:seq 6 ; q6:status "rule-derived" ;
+      rdfs:label "Registered ISA with no documents: each master default is assumed" ;
+      jt:match :D6_L ; jt:construct :D6_R ;
+      jt:mint [ jt:var v:A ; jt:template "urn:q6:alloc:{isa}/{ck}" ] .
+}
+
+<urn:q6:rules:D1_L> {
+  v:S a f:OverrideStatement ; f:activity "?a"^^jt:var .
+  v:C a f:MasterCell ; f:activity "?a"^^jt:var ; f:visit "ED" .
+}
+<urn:q6:rules:D1_R> {
+  v:C q6:masterDefault true ; jt:derivedFrom v:S .
+}
+
+<urn:q6:rules:D2_L> {
+  v:S a f:OverrideStatement ; f:nct "?n"^^jt:var ; f:activity "?a"^^jt:var ; f:text "?t"^^jt:var .
+  v:I a f:DocumentedISA ; f:nct "?n"^^jt:var ; f:code "?isa"^^jt:var .
+  v:C q6:masterDefault true ; f:activity "?a"^^jt:var ; f:visit "ED" ; f:key "?ck"^^jt:var .
+}
+<urn:q6:rules:D2_R> {
+  v:A a q6:Allocation ; q6:isa v:I ; q6:target v:C ;
+      q6:allocation "overrides" ; q6:evidenceText "?t"^^jt:var ; q6:status "document fact" ;
+      jt:derivedFrom v:S .
+}
+
+<urn:q6:rules:D3_L> {
+  v:S a f:OverrideStatement ; f:nct "?n"^^jt:var ; f:activity "?a"^^jt:var ; f:text "?t"^^jt:var .
+  v:I a f:DocumentedISA ; f:nct "?n"^^jt:var ; f:code "?isa"^^jt:var ; f:disease "?dis"^^jt:var .
+  v:X a f:DiseaseStateDesign ; f:disease "?dis"^^jt:var .
+}
+<urn:q6:rules:D3_inMaster> {
+  v:C a f:MasterCell ; f:activity "?a"^^jt:var ; f:visit "ED" .
+}
+<urn:q6:rules:D3_R> {
+  v:A a q6:Allocation ; q6:isa v:I ; q6:target v:X ; q6:activity "?a"^^jt:var ;
+      q6:allocation "overrides (activity not in master SoA)" ; q6:evidenceText "?t"^^jt:var ;
+      q6:status "document fact" ;
+      jt:derivedFrom v:S .
+}
+
+<urn:q6:rules:D4_L> {
+  v:I a f:DocumentedISA ; f:code "?isa"^^jt:var .
+  v:C q6:masterDefault true ; f:activity "?a"^^jt:var ; f:visit "?vis"^^jt:var ; f:key "?ck"^^jt:var .
+  v:M a f:IsaMark ; f:isa v:I ; f:activity "?a"^^jt:var ; f:visit "?vis"^^jt:var .
+}
+<urn:q6:rules:D4_overridden> {
+  v:Ao q6:isa v:I ; q6:target v:C ; q6:allocation "overrides" .
+}
+<urn:q6:rules:D4_R> {
+  v:A a q6:Allocation ; q6:isa v:I ; q6:target v:C ;
+      q6:allocation "takes (restated)" ; q6:status "rule-derived" ;
+      jt:derivedFrom v:M .
+}
+
+<urn:q6:rules:D5_L> {
+  v:I a f:DocumentedISA ; f:code "?isa"^^jt:var .
+  v:C q6:masterDefault true ; f:activity "?a"^^jt:var ; f:visit "?vis"^^jt:var ; f:key "?ck"^^jt:var .
+}
+<urn:q6:rules:D5_marked> {
+  v:M a f:IsaMark ; f:isa v:I ; f:activity "?a"^^jt:var ; f:visit "?vis"^^jt:var .
+}
+<urn:q6:rules:D5_overridden> {
+  v:Ao q6:isa v:I ; q6:target v:C ; q6:allocation "overrides" .
+}
+<urn:q6:rules:D5_R> {
+  v:A a q6:Allocation ; q6:isa v:I ; q6:target v:C ;
+      q6:allocation "takes (silent)" ; q6:status "rule-derived" ;
+      jt:derivedFrom v:I , v:C .
+}
+
+<urn:q6:rules:D6_L> {
+  v:I a f:RegisteredISANoDocuments ; f:code "?isa"^^jt:var .
+  v:C q6:masterDefault true ; f:key "?ck"^^jt:var .
+}
+<urn:q6:rules:D6_R> {
+  v:A a q6:Allocation ; q6:isa v:I ; q6:target v:C ;
+      q6:allocation "default assumed, no document" ; q6:status "rule-derived" ;
+      jt:derivedFrom v:I , v:C .
+}

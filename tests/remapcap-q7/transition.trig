@@ -1,0 +1,18 @@
+# V-transition as mapping data: how the Core's own transition sentence is read.
+# Source: early-clinical-design-research remapcap-design-modules README, step 5 part 1 (8c374cc),
+# accepted by Kerstin 2026-10-25 from the information-architecture side; what "additionally report"
+# means for an analysis is for a trial-design reviewer.
+# The rules join to this graph; the sentence text, the section it sits in and the endpoint sections
+# it protects are data, not rule content.
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix m:    <urn:q7:map-vocab:> .
+
+<urn:jt:g:transition> {
+  <urn:q7:map:transition/core-7.6.2> a m:TransitionReading ;
+      m:sentence "DSAs dated before this Core Protocol amendment will additionally report the pre-specified endpoints as indicated in their respective documents and previous versions of the Core Protocol" ;
+      m:inSection <urn:q7:sec:CORE/7.6.2> ;
+      m:endpointSection <urn:q7:sec:CORE/7.6.1> , <urn:q7:sec:CORE/7.6.2> ;
+      rdfs:comment "'this Core Protocol amendment' = the Core version that contains the sentence; 'dated' = the document's header date; 'previous versions' = the version the containing one supersedes" ;
+      m:status "analyst-reading; accepted by Kerstin 2026-10-25" .
+}
