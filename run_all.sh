@@ -7,6 +7,9 @@ M="$(pwd)/machinery/rulerun.py"
 mkdir -p register/out
 python3 machinery/ctgov_register.py register/assignments.tsv register/inputs/ctgov register/out/register.trig
 cmp register/out/register.trig register/register.trig
+python3 machinery/collection_register.py register/assignments-collections.tsv register/inputs/collections \
+    register/out/register-collections.trig
+cmp register/out/register-collections.trig register/register-collections.trig
 (cd tests/cpmp-join-kind && (cd inputs && shasum -a 256 -c MANIFEST.sha256 > /dev/null) \
    && mkdir -p out && python3 crosswalk_sssom.py out/crosswalk.sssom.tsv && cmp out/crosswalk.sssom.tsv crosswalk.sssom.tsv \
    && python3 ../../machinery/sssom_rdf.py crosswalk.sssom.tsv out/crosswalk.trig urn:k:g:crosswalk \

@@ -30,9 +30,10 @@ separate:
 
 The two CPMP tests together are a rule-based path from the SoA documents to the design-module allocations
 that reproduces the existing Python results exactly. `run_all.sh` runs them and rebuilds the register
-(`register/`), comparing it with the committed `register.trig`. The REMAP-CAP test needs the section text of the
-12 REMAP-CAP documents, which is not redistributed (as in early-clinical-design-research); `run_remapcap.sh` runs
-it once that file is rebuilt (`tests/remapcap-q7/README.md`, Inputs).
+(`register/`), comparing it with the committed `register.trig` and `register-collections.trig`. The REMAP-CAP
+test needs the section text of the 12 REMAP-CAP documents, which is not redistributed (as in
+early-clinical-design-research); `run_remapcap.sh` runs it once that file is rebuilt (`tests/remapcap-q7/README.md`,
+Inputs).
 
 ## What runs here, and what does not
 - **Runs here:** the rule compiler and runner (`rulerun.py`) with mapping data as `jt:` graphs and as an SSSOM
@@ -77,8 +78,11 @@ machinery/rulerun.py    the compiler and runner (shared by all tests)
 machinery/d2d_iri.py    IRIs of the d2d transcript vocabulary (TRANSCRIPT-VOCABULARY.md)
 machinery/d2d_check.py  verbatim, structure, coverage, drift and register checks over d2d transcripts
 machinery/ctgov_register.py  the register from assignments.tsv and pinned ClinicalTrials.gov records
+machinery/collection_register.py  register entries from assignments-collections.tsv and pinned soa2usdm
+                        collection workbooks (protocols without a ClinicalTrials.gov record)
 machinery/sssom_rdf.py  SSSOM TSV mapping sets to a named graph for the rules
-register/               register.trig (generated), assignments.tsv (hand-kept), inputs/ (pinned CT.gov records)
+register/               register.trig and register-collections.trig (generated), assignments.tsv and
+                        assignments-collections.tsv (hand-kept), inputs/ (pinned CT.gov records, collection workbooks)
 VOCABULARY.md           the jt: rule vocabulary
 vocab/d2d.ttl, TRANSCRIPT-VOCABULARY.md  the d2d transcript vocabulary and its description
 requirements.txt        rdflib, pyoxigraph, pyshacl, pandas, openpyxl, pyyaml, pdfplumber
