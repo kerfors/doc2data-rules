@@ -5,6 +5,7 @@ tests/*/out/
 tests/*/facts*.trig
 tests/remapcap-q7/inputs/not-redistributed/
 tests/lzzt-layer1/inputs/downloaded/
+tests/lzzt-usdm/inputs/downloaded/
 docs/
 register/out/
 Claude outputs/

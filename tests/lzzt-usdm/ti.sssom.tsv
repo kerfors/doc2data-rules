@@ -1,0 +1,19 @@
+#curie_map:
+#  lz: 'urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/'
+#  ti: 'urn:jt:mapping/lzzt/ti/'
+#  NCIT: http://purl.obolibrary.org/obo/NCIT_
+#  skos: http://www.w3.org/2004/02/skos/core#
+#  semapv: https://w3id.org/semapv/vocab/
+#  orcid: https://orcid.org/
+#  jt: 'urn:jt:rule-vocab:'
+#mapping_set_id: urn:jt:mapping-set:lzzt-titlemap
+#mapping_set_title: LZZT title map (printed title -> StudyTitle type code)
+#mapping_set_description: Keyed by the d2d transcript of the CDISC Pilot protocol (tests/lzzt-layer1). Objects and labels as in NCI EVS DDF Terminology 2026-09-25 (CDISC Submission Value).
+#license: https://opensource.org/licenses/MIT
+#object_source_version: '2026-09-25'
+#extension_definitions:
+#- slot_name: object_codelist
+#  property: jt:objectCodelist
+#  type_hint: xsd:string
+record_id	subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	reviewer_id	object_codelist	comment
+ti:1	lz:p1.title	Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease	skos:relatedMatch	NCIT:C207616	Official Study Title	semapv:ManualMappingCuration	orcid:0000-0002-1491-0940	C207419	The title printed on the title page is read as the official study title; the row says its type.

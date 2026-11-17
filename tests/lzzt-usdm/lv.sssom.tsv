@@ -1,0 +1,20 @@
+#curie_map:
+#  lz: 'urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/d2d/'
+#  lv: 'urn:jt:mapping/lzzt/lv/'
+#  NCIT: http://purl.obolibrary.org/obo/NCIT_
+#  skos: http://www.w3.org/2004/02/skos/core#
+#  semapv: https://w3id.org/semapv/vocab/
+#  orcid: https://orcid.org/
+#  jt: 'urn:jt:rule-vocab:'
+#mapping_set_id: urn:jt:mapping-set:lzzt-levelmap
+#mapping_set_title: LZZT objective level map (printed section heading -> Objective level code)
+#mapping_set_description: Keyed by the d2d transcript of the CDISC Pilot protocol (tests/lzzt-layer1). Objects and labels as in NCI EVS DDF Terminology 2026-09-25 (CDISC Submission Value).
+#license: https://opensource.org/licenses/MIT
+#object_source_version: '2026-09-25'
+#extension_definitions:
+#- slot_name: object_codelist
+#  property: jt:objectCodelist
+#  type_hint: xsd:string
+record_id	subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	reviewer_id	object_codelist	comment
+lv:1	lz:s2.1	Primary Objectives	skos:relatedMatch	NCIT:C85826	Primary Objective	semapv:ManualMappingCuration	orcid:0000-0002-1491-0940	C188725	The heading names the group of objectives listed under it; each gets this level.
+lv:2	lz:s2.2	Secondary Objectives	skos:relatedMatch	NCIT:C85827	Secondary Objective	semapv:ManualMappingCuration	orcid:0000-0002-1491-0940	C188725	The heading names the group of objectives listed under it; each gets this level.

@@ -1,0 +1,108 @@
+# LZZT stage 1 as L/R rules: USDM Objectives (with level Codes) and the official StudyTitle (with its type Code) from
+# the d2d transcript of the CDISC Pilot protocol (tests/lzzt-layer1/transcript.trig), joined to two decided mapping sets
+# (lv.sssom.tsv, ti.sssom.tsv, through machinery/sssom_rdf.py). No code, decode or level is written in a rule: they come
+# from the rows. A list or title without a row builds nothing and shows in the coverage report.
+# Node IRIs: base + USDM id (usdm-rdf D7), ids from the print position. SyntaxTemplate-name is not printed: the
+# not-stated pattern (VOCABULARY.md) plus "" for minCount 1.
+# jt: vocabulary as in VOCABULARY.md.
+
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix sssom: <https://w3id.org/sssom/> .
+@prefix jt:    <urn:jt:rule-vocab:> .
+@prefix v:     <urn:jt:var:> .
+@prefix d2d:   <urn:jt:d2d:> .
+@prefix obo:   <http://purl.obolibrary.org/obo/> .
+@prefix usdm:  <https://w3id.org/cdisc/usdm/v4/> .
+@prefix :      <urn:jt:rules:lzzt:> .
+
+<urn:jt:g:rules> {
+  :O1 a jt:Rule ; jt:seq 1 ;
+      rdfs:label "Printed list item under a section with a level row -> Objective (text as printed, name not stated)" ;
+      jt:match :O_L ; jt:construct :O1_R ;
+      jt:bind [ jt:seq 1 ; jt:var "pos" ; jt:expr "CONCAT(REPLACE(?num, '\\\\.$', ''), '.', STR(?ord))" ] ;
+      jt:mint [ jt:var v:O ; jt:template "urn:jt:expr/e0006/usdm/Objective_{pos}" ] ,
+              [ jt:var v:C ; jt:template "urn:jt:expr/e0006/usdm/Code_Objective_{pos}_level" ] ,
+              [ jt:var v:EA ; jt:template "urn:jt:expr/e0006/usdm/ExtensionAttribute_Objective_{pos}_name" ] .
+  :O2 a jt:Rule ; jt:seq 2 ;
+      rdfs:label "Level Code of each such Objective, from the level row (code, decode, CT version)" ;
+      jt:match :O2_L ; jt:construct :O2_R ;
+      jt:bind [ jt:seq 1 ; jt:var "pos" ; jt:expr "CONCAT(REPLACE(?num, '\\\\.$', ''), '.', STR(?ord))" ] ,
+              [ jt:seq 2 ; jt:var "code" ; jt:expr "STRAFTER(STR(?T), 'http://purl.obolibrary.org/obo/NCIT_')" ] ;
+      jt:mint [ jt:var v:C ; jt:template "urn:jt:expr/e0006/usdm/Code_Objective_{pos}_level" ] .
+  :T1 a jt:Rule ; jt:seq 3 ;
+      rdfs:label "Printed document title with a title row -> StudyTitle (text as printed)" ;
+      jt:match :T_L ; jt:construct :T1_R ;
+      jt:bind [ jt:seq 1 ; jt:var "pos" ; jt:expr "STR(?lid)" ] ;
+      jt:mint [ jt:var v:ST ; jt:template "urn:jt:expr/e0006/usdm/StudyTitle_{pos}" ] ,
+              [ jt:var v:C ; jt:template "urn:jt:expr/e0006/usdm/Code_StudyTitle_{pos}_type" ] .
+  :T2 a jt:Rule ; jt:seq 4 ;
+      rdfs:label "Type Code of that StudyTitle, from the title row (code, decode, CT version)" ;
+      jt:match :T2_L ; jt:construct :T2_R ;
+      jt:bind [ jt:seq 1 ; jt:var "pos" ; jt:expr "STR(?lid)" ] ,
+              [ jt:seq 2 ; jt:var "code" ; jt:expr "STRAFTER(STR(?T), 'http://purl.obolibrary.org/obo/NCIT_')" ] ;
+      jt:mint [ jt:var v:C ; jt:template "urn:jt:expr/e0006/usdm/Code_StudyTitle_{pos}_type" ] .
+}
+
+<urn:jt:rules:lzzt:O_L> {
+  v:I a d2d:ListItem ; d2d:inList v:L ; d2d:order "?ord"^^jt:var ; d2d:text "?t"^^jt:var .
+  v:L d2d:inSection v:S .
+  v:S d2d:number "?num"^^jt:var .
+  v:X a owl:Axiom ; sssom:mapping_set <urn:jt:mapping-set:lzzt-levelmap> ; owl:annotatedSource v:S .
+}
+<urn:jt:rules:lzzt:O1_R> {
+  v:O a usdm:Objective ;
+      usdm:SyntaxTemplate-text "?t"^^jt:var ;
+      usdm:SyntaxTemplate-name "" ;
+      usdm:Objective-level v:C ;
+      usdm:Objective-extensionAttributes v:EA ;
+      jt:derivedFrom v:I , v:X .
+  v:EA a usdm:ExtensionAttribute ;
+      usdm:ExtensionAttribute-url "https://kerfors.github.io/soa2usdm/not-stated-in-protocol" ;
+      usdm:ExtensionAttribute-valueString "name" ;
+      jt:derivedFrom v:I .
+}
+
+<urn:jt:rules:lzzt:O2_L> {
+  v:I a d2d:ListItem ; d2d:inList v:L ; d2d:order "?ord"^^jt:var .
+  v:L d2d:inSection v:S .
+  v:S d2d:number "?num"^^jt:var .
+  v:X a owl:Axiom ; sssom:mapping_set v:MS ; owl:annotatedSource v:S ;
+      owl:annotatedTarget v:T ; sssom:object_label "?dec"^^jt:var .
+  v:MS a sssom:MappingSet ; sssom:object_source_version "?ver"^^jt:var .
+}
+<urn:jt:rules:lzzt:O2_R> {
+  v:C a usdm:Code ;
+      usdm:Code-code "?code"^^jt:var ;
+      usdm:Code-codeSystem "http://www.cdisc.org" ;
+      usdm:Code-codeSystemVersion "?ver"^^jt:var ;
+      usdm:Code-decode "?dec"^^jt:var ;
+      jt:derivedFrom v:S , v:X .
+}
+
+<urn:jt:rules:lzzt:T_L> {
+  v:E a obo:IAO_0000305 ; d2d:localId "?lid"^^jt:var ; d2d:text "?t"^^jt:var .
+  v:X a owl:Axiom ; sssom:mapping_set <urn:jt:mapping-set:lzzt-titlemap> ; owl:annotatedSource v:E .
+}
+<urn:jt:rules:lzzt:T1_R> {
+  v:ST a usdm:StudyTitle ;
+      usdm:StudyTitle-text "?t"^^jt:var ;
+      usdm:StudyTitle-type v:C ;
+      jt:derivedFrom v:E , v:X .
+}
+
+<urn:jt:rules:lzzt:T2_L> {
+  v:E a obo:IAO_0000305 ; d2d:localId "?lid"^^jt:var .
+  v:X a owl:Axiom ; sssom:mapping_set v:MS ; owl:annotatedSource v:E ;
+      owl:annotatedTarget v:T ; sssom:object_label "?dec"^^jt:var .
+  v:MS a sssom:MappingSet ; sssom:object_source_version "?ver"^^jt:var .
+}
+<urn:jt:rules:lzzt:T2_R> {
+  v:C a usdm:Code ;
+      usdm:Code-code "?code"^^jt:var ;
+      usdm:Code-codeSystem "http://www.cdisc.org" ;
+      usdm:Code-codeSystemVersion "?ver"^^jt:var ;
+      usdm:Code-decode "?dec"^^jt:var ;
+      jt:derivedFrom v:E , v:X .
+}

@@ -1,0 +1,83 @@
+ddfra_path	attribute	ddfra	ours	same
+objectives/Objective_1	paired by layer 1	differs	s2.1.list.1	
+objectives/Objective_1	text	To determine if there is a statistically significant relationship (overall Type 1 erroralpha=0.05) between the change in both the ADAS-Cog (11) and CIBIC+ scores, and drug dose (0, 50 cm2 [54 mg], and 75 cm2 [81 mg]).	To determine if there is a statistically significant relationship (overall Type 1 error rate, α=.05) between the change in both ADAS-Cog (see Attachment LZZT.2) and CIBIC+ (see Attachment LZZT.3) scores, and drug dose (0, 50 cm2 [54 mg], and 75 cm2 [81 mg]).	no
+objectives/Objective_1	name	OBJ1	'' + not stated	no
+objectives/Objective_1/level	code	C85826	C85826	yes
+objectives/Objective_1/level	decode	Primary Objective	Primary Objective	yes
+objectives/Objective_1/level	codeSystemVersion	2024-09-27	2026-09-25	no
+objectives/Objective_1/level	code+decode in DDF CT 2024-09-27	no	no	yes
+objectives/Objective_1/level	code+decode in DDF CT 2026-09-25	yes	yes	yes
+objectives/Objective_1	endpoints	2	0	no
+objectives/Objective_2	paired by layer 1	equal	s2.1.list.2	
+objectives/Objective_2	text	To document the safety profile of the xanomeline TTS.	To document the safety profile of the xanomeline TTS.	yes
+objectives/Objective_2	name	OBJ2	'' + not stated	no
+objectives/Objective_2/level	code	C85826	C85826	yes
+objectives/Objective_2/level	decode	Primary Objective	Primary Objective	yes
+objectives/Objective_2/level	codeSystemVersion	2024-09-27	2026-09-25	no
+objectives/Objective_2/level	code+decode in DDF CT 2024-09-27	no	no	yes
+objectives/Objective_2/level	code+decode in DDF CT 2026-09-25	yes	yes	yes
+objectives/Objective_2	endpoints	3	0	no
+objectives/Objective_3	paired by layer 1	differs	s2.2.list.1	
+objectives/Objective_3	text	To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas.	To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas (see Attachment LZZT.4).	no
+objectives/Objective_3	name	OBJ3	'' + not stated	no
+objectives/Objective_3/level	code	C85827	C85827	yes
+objectives/Objective_3/level	decode	Secondary Objective	Secondary Objective	yes
+objectives/Objective_3/level	codeSystemVersion	2024-09-27	2026-09-25	no
+objectives/Objective_3/level	code+decode in DDF CT 2024-09-27	no	no	yes
+objectives/Objective_3/level	code+decode in DDF CT 2026-09-25	yes	yes	yes
+objectives/Objective_3	endpoints	3	0	no
+objectives/Objective_4	paired by layer 1	equal	s2.2.list.2	
+objectives/Objective_4	text	To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas (see Attachment LZZT.5).	To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas (see Attachment LZZT.5).	yes
+objectives/Objective_4	name	OBJ4	'' + not stated	no
+objectives/Objective_4/level	code	C85827	C85827	yes
+objectives/Objective_4/level	decode	Secondary Objective	Secondary Objective	yes
+objectives/Objective_4/level	codeSystemVersion	2024-09-27	2026-09-25	no
+objectives/Objective_4/level	code+decode in DDF CT 2024-09-27	no	no	yes
+objectives/Objective_4/level	code+decode in DDF CT 2026-09-25	yes	yes	yes
+objectives/Objective_4	endpoints	1	0	no
+objectives/Objective_5	paired by layer 1	differs	s2.2.list.3	
+objectives/Objective_5	text	To assess the dose-dependent improvements in an extended assessment of cognition that integrates attention/concentration tasks. The Alzheimer's Disease Assessment Scale-14 item Cognitive Subscale, hereafter referred to as ADAS-Cog (14), will be used for this assessment (see Attachment LZZT.2).	To assess the dose-dependent improvements in an extended assessment of cognition that integrates attention/concentration tasks. The Alzheimer’s Disease Assessment Scale-14 item Cognitive Subscale, hereafter referred to as ADAS-Cog (14), will be used for this assessment (see Attachment LZZT.2).	no
+objectives/Objective_5	name	OBJ5	'' + not stated	no
+objectives/Objective_5/level	code	C85827	C85827	yes
+objectives/Objective_5/level	decode	Secondary Objective	Secondary Objective	yes
+objectives/Objective_5/level	codeSystemVersion	2024-09-27	2026-09-25	no
+objectives/Objective_5/level	code+decode in DDF CT 2024-09-27	no	no	yes
+objectives/Objective_5/level	code+decode in DDF CT 2026-09-25	yes	yes	yes
+objectives/Objective_5	endpoints	1	0	no
+objectives/Objective_6	paired by layer 1	equal	s2.2.list.4	
+objectives/Objective_6	text	To assess the treatment response as a function of Apo E genotype.	To assess the treatment response as a function of Apo E genotype.	yes
+objectives/Objective_6	name	OBJ6	'' + not stated	no
+objectives/Objective_6/level	code	C85827	C85827	yes
+objectives/Objective_6/level	decode	Secondary Objective	Secondary Objective	yes
+objectives/Objective_6/level	codeSystemVersion	2024-09-27	2026-09-25	no
+objectives/Objective_6/level	code+decode in DDF CT 2024-09-27	no	no	yes
+objectives/Objective_6/level	code+decode in DDF CT 2026-09-25	yes	yes	yes
+objectives/Objective_6	endpoints	1	0	no
+titles/Study Acronym	paired by layer 1	contained	p1.protocol;s2.1.list.1;s2.2.list.1;s2.2.list.2;s2.2.list.3	
+titles/Study Acronym	text	LZZT		no
+titles/Study Acronym/type	code	C94108		no
+titles/Study Acronym/type	decode	Study Acronym		no
+titles/Study Acronym/type	codeSystemVersion	2024-09-27		no
+titles/Study Acronym/type	code+decode in DDF CT 2024-09-27	no		no
+titles/Study Acronym/type	code+decode in DDF CT 2026-09-25	no		no
+titles/Brief Study Title	paired by layer 1	equal	p1.compound	
+titles/Brief Study Title	text	Xanomeline (LY246708)		no
+titles/Brief Study Title/type	code	C99905x1		no
+titles/Brief Study Title/type	decode	Brief Study Title		no
+titles/Brief Study Title/type	codeSystemVersion	2024-09-27		no
+titles/Brief Study Title/type	code+decode in DDF CT 2024-09-27	no		no
+titles/Brief Study Title/type	code+decode in DDF CT 2026-09-25	no		no
+titles/Official Study Title	paired by layer 1	differs	p1.title	
+titles/Official Study Title	text	Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer's Disease	Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease	no
+titles/Official Study Title/type	code	C99905x2	C207616	no
+titles/Official Study Title/type	decode	Official Study Title	Official Study Title	yes
+titles/Official Study Title/type	codeSystemVersion	2024-09-27	2026-09-25	no
+titles/Official Study Title/type	code+decode in DDF CT 2024-09-27	no	yes	no
+titles/Official Study Title/type	code+decode in DDF CT 2026-09-25	no	yes	no
+titles/Public Study Title	paired by layer 1	differs	p1.title	
+titles/Public Study Title	text	Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer's Disease	Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease	no
+titles/Public Study Title/type	code	C99905x3	C207616	no
+titles/Public Study Title/type	decode	Public Study Title	Official Study Title	no
+titles/Public Study Title/type	codeSystemVersion	2024-09-27	2026-09-25	no
+titles/Public Study Title/type	code+decode in DDF CT 2024-09-27	no	yes	no
+titles/Public Study Title/type	code+decode in DDF CT 2026-09-25	no	yes	no
