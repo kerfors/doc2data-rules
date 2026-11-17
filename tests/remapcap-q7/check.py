@@ -167,3 +167,7 @@ t = sv_mine.groupby(["doc", "doc_date"]).resolves_to_core_versions.value_counts(
 t.insert(0, "R6s", t.sum(axis=1))
 print("\nR6s / R7 per DSA (rules):")
 print(t.to_string())
+
+assert (both._merge == "both").all() and identical == len(py), f"Part A differs: identical {identical} of Python {len(py)} | rules {len(mine)}"
+assert set(affected) == changed_readings, "Part B: affected statements are not the readings with a target_change"
+assert len(sv) == len(sv_mine) and tup(sv) == tup(sv_mine), f"Part B: statement_versions differ: Python {len(sv)} | rules {len(sv_mine)} | identical {len(tup(sv) & tup(sv_mine))}"
