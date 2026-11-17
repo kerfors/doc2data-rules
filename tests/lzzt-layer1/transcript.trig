@@ -249,7 +249,8 @@
 <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040/transcript/stage1/run/1> a prov:Activity ;
     prov:used <urn:jt:sha256/dbadb3709bb5c41f1ede5ccf60412e9e2fa7ec18d3fdc996ec329cd80e61a040> , <urn:jt:sha256/65238343be6b812e320ee86f8d12fae7553408f9fbf760c0115d2364b5e0ce09> , <urn:jt:sha256/804faa8aaa9b208421b4dbfcc4eb5ebbf20b4183042e7c3dfe2a70f6b9fa62f5> ;
     d2d:textNormalization d2d:whitespaceCollapsed ;
-    prov:qualifiedAssociation [ prov:agent <urn:jt:agent/claude> ; prov:hadRole d2d:transcriber ] .
+    prov:qualifiedAssociation [ prov:agent <urn:jt:agent/claude> ; prov:hadRole d2d:transcriber ] ,
+                              [ prov:agent <https://orcid.org/0000-0002-1491-0940> ; prov:hadRole d2d:checker ] .
 
 <urn:jt:agent/claude> a prov:SoftwareAgent ;
     rdfs:label "Claude (Anthropic), Claude Opus 5.5" .

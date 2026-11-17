@@ -32,7 +32,8 @@ is the one the collection links to (d4k usdm_data).
 - `transcript.trig`: the d2d transcript, stage 1. Page 1 (title page): the copyright notice, the compound line, the
   protocol line and the document title. Page 7: section 2 Objectives with 2.1 and 2.2, each with its lead sentence and
   bulleted list (2 and 4 items). 17 elements, 12 anchors. The running header and footer printed on every page are not
-  transcribed. The run record names the transcriber; no human checker is recorded yet.
+  transcribed. The run record names the transcriber (Claude) and the checker (Kerstin Forsberg, ORCID
+  0000-0002-1491-0940), who compared the 17 elements with pages 1 and 7 on 2026-11-17.
 - `compare_ddfra.py`: for each DDF-RA value in scope (4 titles, 2 study identifiers, 6 objectives, 11 endpoints), how it
   relates to the transcribed pages, under the run's normalization (whitespace collapsed, nothing else): equal,
   contained, differs (difflib ratio >= 0.8, both texts shown), not printed, placeholder ("*** ... ***").
