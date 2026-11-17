@@ -66,7 +66,9 @@ class Rules:
         return rdflib.URIRef(JT + s)
 
     def triples_of(self, name):
-        return list(self.ds.graph(rdflib.URIRef(str(name))).triples((None, None, None)))
+        # sorted, so graph variables (?gl0, ?gn0_0, ...) are numbered the same on every run
+        return sorted(self.ds.graph(rdflib.URIRef(str(name))).triples((None, None, None)),
+                      key=lambda t: tuple(x.n3() for x in t))
 
     def ordered(self):
         return sorted(self.g.subjects(rdflib.RDF.type, self.p("Rule")),
