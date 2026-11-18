@@ -1,8 +1,26 @@
 # doc2data-rules — document-to-data as reviewable rules
 
 Started 2026-11-13 after Connected Data London
-2026, from Doug Beeson's talk "SPARQL Patterns for Connected Data" (Semantic Arts, Wed 11 Nov). Status as of
-2026-11-17.
+2026, from Doug Beeson's talk "SPARQL Patterns for Connected Data" (Semantic Arts, Wed 11 Nov). Closed
+2026-11-18.
+
+## Status: closed (2026-11-18)
+This experiment is closed. What it set out to show held only in part.
+- **Held:** rules as L/R graphs over mapping data kept outside them reproduce independent builds exactly when the
+  input is already structured (the CPMP and REMAP-CAP tests: 2777/2777, 48/48, 139/139), with one graph per rule
+  firing and USDM output validated with SHACL.
+- **Did not hold: layer 1 for PDFs.** A whole-document transcript with "no decisions" did not carry over to protocol
+  tables. Each new table layout needed its own transcription script, changes to the structure check and its own
+  transcription decisions.
+- **Did not hold: an AI reading step instead.** Tried on 2026-11-17/18: a model reads the page images with a set of
+  named reading patterns, quotes the printed words as evidence and flags its judgments; rules take over from there.
+  On the LZZT pages used here and on two protocol tables in tests outside this repository, readers from three model
+  families reproduced the structure. But two tests with criteria fixed in advance failed: agreement with a decided
+  build could not be specified tightly enough to test the claim that only flagged readings need review, and about
+  half of all readings were flagged, which is no less review than doing it by hand.
+- **Usable as is:** `rulerun.py` (rules as RDF, one graph per firing, undone by dropping it), mapping data as SSSOM
+  with its review state, the register (document identity by sha256), and the LZZT worked example of rules plus
+  provenance. The tests still run as described below. No further work is planned here.
 
 ## The idea
 Beeson described representing the shape of a knowledge graph as pure RDF — a pattern language expressed as
@@ -118,6 +136,7 @@ Identifiers: all IRIs are `urn:jt:` for now. They are provisional and will move 
 - Not tuned: the join test takes about 45 s.
 
 ## Where to go next
+Not continued: closed 2026-11-18 (see Status). Kept as the record of where it was going.
 1. **Q7 version binding** (REMAP-CAP Core 4.0 → 4.1): done 2026-11-14, `tests/remapcap-q7` — re-run on
    the new Core and compare provenance; 54 affected statements, as the Python build.
 2. **Status labels from mapping status**: done 2026-11-14, `tests/cpmp-join-kind` rules ST1-ST3 — 469 cells
